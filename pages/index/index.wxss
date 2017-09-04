@@ -1,0 +1,77 @@
+.body{
+  margin: 0;
+}
+.body:before {
+    background-color: rgb(242,242,242);
+    width: 100%;
+    content: '';
+    position: fixed;
+    display: block;
+    bottom: 0;
+    top: 0;
+    z-index: -1;
+}
+.ul{
+  margin: 0;
+  padding: 0;
+}
+.li{
+  list-style: none;
+}
+.auth{
+  margin-bottom: 5em;
+}
+.auth .h1{
+  margin: 0 auto;
+}
+.auth .ul .li{
+  margin-top: 1.5em;
+  background-color: #ffffff;
+}
+.auth .ul .li.list{
+  padding: 0.8em;
+}
+.auth .ul .li .token{
+  color: rgb(66,133,244);
+}
+.auth .ul .li .info{
+  padding: 0.4em 0;
+}
+.auth .ul .li .time .canvas{
+  height: 1em;
+  width: 1em;
+  display:inline-block;
+  z-index: 2;
+}
+.am-cf:after, .am-cf:before {
+    content: " ";
+    display: table;
+}
+.am-cf:after {
+    clear: both;
+}
+.am-fl {
+    float: left;
+}
+.am-fr {
+    float: right;
+}
+.onlineService {
+    position: fixed;
+    right: 1em;
+    bottom: 5%;
+    width: 3em;
+    height: 3em;
+    background-color: rgb(221,44,1);
+    border-radius: 100%;
+    z-index: 9999;
+}
+.add {
+    color: #ffffff;
+    line-height:2em;
+    font-size: 1.5em;
+    font-weight:bold;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+}

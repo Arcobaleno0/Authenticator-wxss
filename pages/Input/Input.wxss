@@ -1,0 +1,251 @@
+/* pages/Input/Input.wxss */
+.body{
+  margin: 0;
+}
+.body:before {
+    background-color: rgb(250,250,250);
+    width: 100%;
+    content: '';
+    position: fixed;
+    display: block;
+    bottom: 0;
+    top: 0;
+    z-index: -1;
+}
+.mdl-textfield--floating-label.is-error .mdl-textfield__label{
+    color: #ff0000;
+    font-size: 12px;
+    top: 4px;
+    visibility: visible;
+}
+.mdl-textfield--floating-label.is-dirty .mdl-textfield__label{
+    font-size: 12px;
+    top: 4px;
+    visibility: visible;
+}
+.mdl-textfield--floating-label.is-focused .mdl-textfield__label, .mdl-textfield--floating-label.has-placeholder .mdl-textfield__label {
+    color: rgb(66,133,244);
+    font-size: 12px;
+    top: 4px;
+    visibility: visible;
+}
+.mdl-textfield.is-focused .mdl-textfield__label:after,.mdl-textfield.is-error .mdl-textfield__label:after {
+    left: 0;
+    visibility: visible;
+    width: 100%;
+}
+
+.mdl-button--raised.mdl-button--colored {
+    background: #4285f4;
+    color: rgb(66,66,66);
+}
+.mdl-button--raised {
+    background: rgba(158,158,158,.2);
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
+}
+.mdl-button {
+    background: 0 0;
+    border: none;
+    border-radius: 2px;
+    color: #000;
+    position: relative;
+    margin: 0;
+    min-width: 4rem;
+    padding:0 2rem;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0;
+    overflow: hidden;
+    will-change: box-shadow;
+    transition: box-shadow .2s cubic-bezier(.4,0,1,1),background-color .2s cubic-bezier(.4,0,.2,1),color .2s cubic-bezier(.4,0,.2,1);
+    outline: none;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+    line-height: 36px;
+    vertical-align: middle;
+}
+.mdl-button--raised:active {
+    box-shadow: 0 4px 5px 0 rgba(0,0,0,.14), 0 1px 10px 0 rgba(0,0,0,.12), 0 2px 4px -1px rgba(0,0,0,.2);
+    background-color: rgba(158,158,158,.4);
+}
+.mdl-button.mdl-button--colored:focus:not(:active) {
+    background-color: rgba(0,0,0,.12);
+}
+.mdl-button--raised:focus:not(:active) {
+    box-shadow: 0 0 8px rgba(0,0,0,.18), 0 8px 16px rgba(0,0,0,.36);
+    background-color: rgba(158,158,158,.4);
+}
+.mdl-button--raised.mdl-button--colored:active {
+    background-color: rgb(66,113,191);
+}
+.mdl-button:focus:not(:active) {
+    background-color: rgba(0,0,0,.12);
+}
+
+.mdl-button__ripple-container {
+    display: block;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 0;
+    overflow: hidden;
+}
+.mdl-button--raised.mdl-button--colored .mdl-ripple {
+    background: rgb(66,66,66);
+}
+.mdl-ripple {
+    background: #000;
+    border-radius: 50%;
+    height: 50px;
+    left: 0;
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    -webkit-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+    width: 50px;
+    overflow: hidden;
+}
+.mdl-ripple.is-visible {
+    opacity: .3;
+}
+
+.mdl-card__supporting-text {
+    color: rgba(0,0,0,.54);
+    font-size: 1rem;
+    line-height: 18px;
+    overflow: hidden;
+    padding: 16px;
+    width: 90%;
+}
+.mdl-textfield {
+    position: relative;
+    font-size: 16px;
+    display: inline-block;
+    box-sizing: border-box;
+    width: 300px;
+    max-width: 100%;
+    margin: 0;
+    padding: 20px 0;
+}
+.mdl-textfield__input {
+    border: none;
+    border-bottom: 1px solid rgba(0,0,0,.12);
+    display: block;
+    font-size: 16px;
+    margin: 0;
+    padding: 4px 0;
+    width: 100%;
+    background: 0 0;
+    text-align: left;
+    color: #000;
+}
+.mdl-textfield--floating-label .mdl-textfield__label {
+    transition-duration: .2s;
+    transition-timing-function: cubic-bezier(.4,0,.2,1);
+}
+
+.mdl-textfield__label {
+    bottom: 0;
+    color: rgba(0,0,0,.26);
+    font-size: 16px;
+    left: 0;
+    right: 0;
+    pointer-events: none;
+    position: absolute;
+    display: block;
+    top: 24px;
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-align: left;
+}
+.mdl-textfield__label:after {
+    background-color: rgb(66,133,244);
+    bottom: 20px;
+    content: '';
+    height: 2px;
+    left: 45%;
+    position: absolute;
+    transition-duration: .2s;
+    transition-timing-function: cubic-bezier(.4,0,.2,1);
+    visibility: hidden;
+    width: 10px;
+}
+.mdl-textfield.is-error .mdl-textfield__label:after {
+    background-color: #ff0000;
+}
+.mdl-textfield.is-focused .mdl-textfield__input {
+    outline: none;
+}
+
+/* 扩展 */
+
+.mdl-button--raised {
+    box-shadow: none;
+}
+
+.mdl-button--raised.mdl-button--colored {
+    color: #f5f5f5;
+    font-size: 18px;
+}
+
+.mdl-textfield {
+    width: 100%;
+}
+
+.mdl-textfield__input {
+    font-size: 18px;
+    border-bottom-color: #ccc;
+}
+
+.mdl-textfield__label {
+    color: #9a9a9a;
+}
+
+.mdl-textfield > .mdl-button {
+    position: absolute;
+    right: 0;
+    margin-bottom: 3px;
+}
+
+.mdl-card__actions {
+    padding: 15px 0;
+}
+
+.mdl-card__supporting-text {
+    width: auto;
+}
+.app-error {
+    width: 100%;
+    padding-top: 5px;
+    color: #ff0000;
+    font-size: 12px;
+    position:absolute;
+    display: none;
+}
+.mdl-textfield--floating-label.is-error .app-error{
+  display: block;
+}
+.hide{
+  display: none;
+}
+.am-cf:after, .am-cf:before {
+    content: " ";
+    display: table;
+}
+.am-cf:after {
+    clear: both;
+}
+.am-fl {
+    float: left;
+}
+.am-fr {
+    float: right;
+}
