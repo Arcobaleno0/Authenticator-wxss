@@ -10,7 +10,7 @@ Page({
         usernameinput: false,
         tokenfocus: false,
         tokeninput: false,
-        array: ['基于时间', '基于计数器'],
+        array: ['基于时间'],
         index: 0,
         errorMsg: "密钥值太短",
     },
@@ -48,6 +48,7 @@ Page({
                 errorMsg: '密钥值太短'
             });
             this.setData(getData('tokenerror', true));
+            return false;
         }
         var data = e.detail.value;
         var obj = {
@@ -62,13 +63,13 @@ Page({
         }
         var data = wx.getStorageSync('DATA') || [];
         data.push(obj);
-        // this.setData({
-        //   DATA: TOOL.parse_code(data)
-        // });
-        // canvas(wx.createCanvasContext('canvas' + (data.length - 1)));
         wx.setStorageSync('DATA', data)
-        wx.redirectTo({
-          url: '../index/index',
-        });
+        wx.setStorage({
+          key:'DATA',
+          data:data,
+          success:() => {
+            wx.navigateBack();
+          }
+        })
     }
 });

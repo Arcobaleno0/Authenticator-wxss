@@ -4,8 +4,18 @@ var url = require("./url.js"),
     parseURL = function(e) {
         var r = url.parse(e, !0),
             t = r.pathname.substr(1).split(":"),
-            s = r.query;
-        s.encoding = 'base32';
+            s = r.query,
+            obj = {
+              "secret": "",
+              "issuer": "",
+              "algorithm": "SHA1",
+              "digits": "6",
+              "period": "30",
+              "encoding": "base32",
+              "type": "totp",
+              "label": ""
+            }
+        s = Object.assign(obj, s);
         if (!('hostname' in r)) {
             return !1;
         }

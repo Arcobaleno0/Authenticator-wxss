@@ -47,6 +47,14 @@ Page({
     canvasIdErrorCallback: function(e) {
         console.error(e.detail.errMsg)
     },
+    onShow: function(){
+      var sec = new Date().getSeconds();
+      if (sec == 0 || sec == 30) {
+        this.setData({
+          DATA: TOOL.parse_code(wx.getStorageSync('DATA') || [])
+        });
+      }
+    },
     onReady: function(e) {
         TOOL.parse_code(wx.getStorageSync('DATA') || []).forEach((item) => {
             canvas(wx.createCanvasContext(item.id));
