@@ -20,7 +20,7 @@ var url = require("./url.js"),
             return !1;
         }
         switch (r.hostname.toLowerCase()) {
-            case 'hotp':
+            // case 'hotp':
             case 'totp':
                 break;
             default:

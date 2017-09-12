@@ -37,12 +37,6 @@
 .auth .ul .li .info{
   padding: 0.4em 0;
 }
-.auth .ul .li .time .canvas{
-  height: 1em;
-  width: 1em;
-  display:inline-block;
-  z-index: 2;
-}
 .am-cf:after, .am-cf:before {
     content: " ";
     display: table;

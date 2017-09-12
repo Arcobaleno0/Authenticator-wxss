@@ -1,14 +1,14 @@
 <view class="body">
     <view class="div auth">
         <view class="ul">
-            <view class="li list" wx:key="k" wx:for="{{DATA}}">
+            <view class="li list" wx:key="k" wx:for="{{DATA}}" data="k">
                 <view class="h1 token">{{item.token}}</view>
                 <view class="div info am-cf">
                     <view class="span email am-fl">
                         {{item.access}}
                     </view>
                     <view class="span time am-fr">
-                        <canvas class="canvas" canvas-id="{{item.id}}"></canvas>
+                          {{timeOut}}s
                     </view>
                 </view>
             </view>
