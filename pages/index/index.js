@@ -10,13 +10,14 @@ Page({
     DATA: TOOL.parse_code(wx.getStorageSync('DATA') || []),
     timeOut: 30
   },
-  onShow: function () {
+  showCode: function(reload){
+    reload = reload || false;
     var sec = new Date().getSeconds();
-    var secsToNext = 0;
-    if (sec == 0 || sec == 30) {
+    var secsToNext = 30;
+    if ((sec == 0) || (sec == 30) || reload) {
       this.setData({
         DATA: TOOL.parse_code(wx.getStorageSync('DATA') || []),
-        timeOut: 30
+        timeOut: secsToNext
       });
     } else {
       if (sec < 30) {
@@ -29,28 +30,15 @@ Page({
       });
     }
   },
+  onShow: function () {
+    this.showCode(true);
+  },
   Longpress:function(){
     console.log(1)
   },
   onReady: function (e) {
     setInterval(() => {
-      var sec = new Date().getSeconds();
-      var secsToNext = 0;
-      if (sec == 0 || sec == 30) {
-        this.setData({
-          DATA: TOOL.parse_code(wx.getStorageSync('DATA') || []),
-          timeOut: 30
-        });
-      } else {
-        if (sec < 30) {
-          secsToNext = 30 - sec;
-        } else if (sec > 30) {
-          secsToNext = 60 - sec;
-        }
-        this.setData({
-          timeOut: secsToNext
-        });
-      }
+      this.showCode();
     }, 500);
   },
   showWidget: function () {
@@ -76,6 +64,7 @@ Page({
                     DATA: TOOL.parse_code(data)
                   });
                   wx.setStorageSync('DATA', data);
+                  this.showCode(true);
                 }
               });
               break;

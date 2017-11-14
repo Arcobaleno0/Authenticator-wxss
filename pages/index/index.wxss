@@ -53,18 +53,19 @@
 .onlineService {
     position: fixed;
     right: 1em;
-    bottom: 5%;
-    width: 3em;
-    height: 3em;
+    bottom: 1em;
+    width: 3.5rem;
+    height: 3.5rem;
     background-color: rgb(221,44,1);
     border-radius: 100%;
     z-index: 9999;
 }
 .add {
     color: #ffffff;
-    line-height:2em;
-    font-size: 1.5em;
-    font-weight:bold;
+    width: 3.5rem;
+    height: 3.5rem;
+    line-height:3.5rem; 
+    font-size: 2rem;
     text-align: center;
     white-space: nowrap;
     vertical-align: middle;
