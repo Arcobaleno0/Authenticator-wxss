@@ -66,7 +66,7 @@ Page({
           "type": ((data.type >> 0) == 0) ? "totp" : 'hotp',
           "label": ""
         }
-        Config.push(obj);
+        Config.update(obj);
         wx.navigateBack();
     }
 });
