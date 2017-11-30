@@ -33,13 +33,15 @@ var url = require("./url.js"),
     return s.type = r.hostname.toLowerCase(), s.issuer = decodeURIComponent(t[0]), s.label = decodeURIComponent(t.length > 1 ? t[1] : ""), s
   },
   parse_code = function (e) {
-    var num = 0;
-    return e.map(function (e) {
-      return {
-        access: e.label.length > 0 ? e.issuer + " (" + e.label + ")" : e.issuer,
-        token: String("totp" == e.type ? Ga.totp(e) : Ga.hotp(e)).replace(/^(\d{3})/, '$1 '),
-        type: e.type
-      }
-    })
+    var data = [];
+    for (let k in e ){
+      data.push({
+        access: e[k].label.length > 0 ? e[k].issuer + " (" + e[k].label + ")" : e[k].issuer,
+        token: String("totp" == e[k].type ? Ga.totp(e[k]) : '------').replace(/^([\w\-]{3})/, '$1 '),
+        type: e[k].type,
+        id: k
+      });
+    }
+    return data;
   };
 exports.parseURL = parseURL, exports.parse_code = parse_code;

@@ -1,14 +1,15 @@
 <view class="body">
     <view class="div auth">
         <view class="ul">
-            <view class="li list" wx:key="k" wx:for="{{DATA}}" data="k">
+            <view class="li list" wx:key="k" wx:for="{{DATA}}" data="k" bindlongpress="Longpress" data-id="{{ item.id }}" data-access="{{ item.access }}">
                 <view class="h1 token">{{item.token}}</view>
                 <view class="div info am-cf">
                     <view class="span email am-fl">
                         {{item.access}}
                     </view>
                     <view class="span time am-fr">
-                          {{timeOut}}s
+                        <view wx:if="{{ item.type == 'hotp' }}" bindtap='getHotp' data-id="{{ item.id }}">⊙</view>
+                        <view wx:if="{{ item.type == 'totp' }}">{{timeOut}}s</view>
                     </view>
                 </view>
             </view>
@@ -17,4 +18,19 @@
     <view class="div onlineService" bindtap="showWidget">
        <view class="a add"> + </view>
     </view>
+    <modal title="是否删除 {{ deleteinfo }}" confirm-text="删除帐号" cancel-text="取消" hidden="{{modalHidden}}" mask bindconfirm="modalDelete" bindcancel="modalChange">
+      删除该帐号会<view class="span b">导致您无法</view>生成验证码，但<view class="span b">不会</view>关闭双重身份验证。
+      <view class="div">　</view>
+      <view class="div">
+      您可能会因此无法登录自己的帐号。在删除该帐号之前，请执行以下操作:
+      </view>
+      <view class="div">　</view>
+      <view class="div">
+      -关闭该帐号的两双重身份验证功能，或者
+      </view>
+      <view class="div">　</view>
+      <view class="div">
+      -确保您可以通过其他方法生成验证码。
+      </view>
+    </modal>
 </view>

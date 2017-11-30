@@ -4,6 +4,7 @@ var getData = function(k, v) {
     };
 };
 var TOOL = require('../../utils/index.js');
+var Config = require('../../utils/Config.js').config;
 Page({
     data: {
         usernamefocus: false,
@@ -65,15 +66,7 @@ Page({
           "type": ((data.type >> 0) == 0) ? "totp" : 'hotp',
           "label": ""
         }
-        var data = wx.getStorageSync('DATA') || [];
-        data.push(obj);
-        wx.setStorageSync('DATA', data)
-        wx.setStorage({
-          key:'DATA',
-          data:data,
-          success:() => {
-            wx.navigateBack();
-          }
-        })
+        Config.push(obj);
+        wx.navigateBack();
     }
 });

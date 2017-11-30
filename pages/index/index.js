@@ -2,29 +2,28 @@
 //获取应用实例
 const app = getApp()
 var TOOL = require('../../utils/index.js');
+var Config = require('../../utils/Config.js').config;
 Page({
   /**
    * 页面的初始数据
    */
   data: {
-    DATA: TOOL.parse_code(wx.getStorageSync('DATA') || []),
-    timeOut: 30
+    DATA: TOOL.parse_code(Config.get()),
+    timeOut: 30,
+    modalHidden:true,
+    deleteinfo:'',
+    deleteid:null,
   },
   showCode: function(reload){
     reload = reload || false;
     var sec = new Date().getSeconds();
-    var secsToNext = 30;
+    var secsToNext = (sec > 30) ? 60 - sec : 30 - sec;
     if ((sec == 0) || (sec == 30) || reload) {
       this.setData({
-        DATA: TOOL.parse_code(wx.getStorageSync('DATA') || []),
+        DATA: TOOL.parse_code(Config.get()),
         timeOut: secsToNext
       });
     } else {
-      if (sec < 30) {
-        secsToNext = 30 - sec;
-      } else if (sec > 30) {
-        secsToNext = 60 - sec;
-      }
       this.setData({
         timeOut: secsToNext
       });
@@ -32,9 +31,6 @@ Page({
   },
   onShow: function () {
     this.showCode(true);
-  },
-  Longpress:function(){
-    console.log(1)
   },
   onReady: function (e) {
     setInterval(() => {
@@ -58,12 +54,10 @@ Page({
                       showCancel: false,
                     });
                   }
-                  var data = wx.getStorageSync('DATA') || [];
-                  data.push(d);
+                  Config.update(d);
                   this.setData({
-                    DATA: TOOL.parse_code(data)
+                    DATA: TOOL.parse_code(Config.get())
                   });
-                  wx.setStorageSync('DATA', data);
                   this.showCode(true);
                 }
               });
@@ -77,5 +71,46 @@ Page({
         }
       }
     });
+  },
+  Longpress: function (event){
+    wx.showActionSheet({
+      itemList: ['修改', '删除'],
+      success: (res) => {
+        if (!res.cancel) {
+          switch (res.tapIndex) {
+            case 0:
+              wx.showModal({
+                content: '暂时还没有该功能',
+                showCancel: false,
+              })
+            break;
+            case 1:
+              this.setData({
+                deleteid: event.currentTarget.dataset.id,
+                deleteinfo: event.currentTarget.dataset.access,
+                modalHidden:false
+              });
+            break;
+          }
+        }
+      }
+      });
+  },
+  modalChange:function(){
+    this.setData({
+      modalHidden: true
+    });
+  },
+  modalDelete:function(){
+    Config.del(this.data.deleteid);
+    this.setData({
+      modalHidden: true
+    });
+    this.showCode(true);
+  },
+  getHotp: function(event)
+  {
+    console.log(this.data);
+    console.log(event);
   }
 })
