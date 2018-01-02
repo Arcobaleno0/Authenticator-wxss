@@ -13,6 +13,9 @@ Page({
     modalHidden:true,
     deleteinfo:'',
     deleteid:null,
+    rename:'',
+    reid:0,
+    rehidden:true
   },
   showCode: function(reload){
     reload = reload || false;
@@ -79,10 +82,11 @@ Page({
         if (!res.cancel) {
           switch (res.tapIndex) {
             case 0:
-              wx.showModal({
-                content: '暂时还没有该功能',
-                showCancel: false,
-              })
+              this.setData({
+                reid: event.currentTarget.dataset.id,
+                rename: event.currentTarget.dataset.access,
+                rehidden: false
+              });
             break;
             case 1:
               this.setData({
@@ -101,12 +105,29 @@ Page({
       modalHidden: true
     });
   },
+  modalre:function(){
+    this.setData({
+      rehidden: true
+    });
+  },
   modalDelete:function(){
     Config.del(this.data.deleteid);
     this.setData({
       modalHidden: true
     });
     this.showCode(true);
+  },
+  modalreChange:function(event){
+    Config.valupdate(this.data.reid, 'issuer', this.data.rename);
+    this.showCode(true);
+    this.setData({
+      rehidden: true
+    });
+  },
+  userNameInput:function(e){
+    this.setData({
+      rename: e.detail.value
+    })
   },
   getHotp: function(event)
   {

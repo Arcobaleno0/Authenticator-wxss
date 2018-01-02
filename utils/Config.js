@@ -9,17 +9,21 @@ var Config = {
             return json;
         }
         return data;
-    },
+    },         
     update: function(value) {
         var data = this.get();
-        var lastkey = Object.values(data).length;
-        data[lastkey] = value;
+        data[Object.keys(data).length] = value;
         wx.setStorageSync('DATA', data);
     },
     del: function(key) {
         var data = this.get();
         delete data[key];
         wx.setStorageSync('DATA', data);
+    },
+    valupdate: function(key, key1, value) {
+      var data = this.get();
+      data[key][key1] = value;
+      wx.setStorageSync('DATA', data);
     }
 };
 

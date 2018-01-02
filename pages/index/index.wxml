@@ -33,4 +33,10 @@
       -确保您可以通过其他方法生成验证码。
       </view>
     </modal>
+    <modal title="重命名" confirm-text="保存" cancel-text="取消" hidden="{{ rehidden }}"  mask bindconfirm="modalreChange" bindcancel="modalre">
+        <view class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label is-upgraded is-focused">
+            <input class="mdl-textfield__input" type="text" name="username" id="username" value="{{ rename }}" data-id="{{ reid }}" bindinput="userNameInput" />
+            <view class="label mdl-textfield__label"></view>
+        </view>
+    </modal>
 </view>
