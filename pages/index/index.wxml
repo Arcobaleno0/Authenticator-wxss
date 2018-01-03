@@ -1,7 +1,7 @@
 <view class="body">
     <view class="div auth">
         <view class="ul">
-            <view class="li list" wx:key="k" wx:for="{{DATA}}" data="k" bindlongpress="Longpress" data-id="{{ item.id }}" data-access="{{ item.access }}">
+            <view class="li list" wx:key="k" wx:for="{{DATA}}" data="k" bindlongpress="Longpress" data-id="{{ item.id }}" data-access="{{ item.access }}" data-issuer="{{ item.issuer }}">
                 <view class="h1 token">{{item.token}}</view>
                 <view class="div info am-cf">
                     <view class="span email am-fl">

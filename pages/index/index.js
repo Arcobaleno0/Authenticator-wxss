@@ -84,7 +84,7 @@ Page({
             case 0:
               this.setData({
                 reid: event.currentTarget.dataset.id,
-                rename: event.currentTarget.dataset.access,
+                rename: event.currentTarget.dataset.issuer,
                 rehidden: false
               });
             break;

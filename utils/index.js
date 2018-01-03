@@ -1,6 +1,6 @@
 "use strict";
 var url = require("./url.js"),
-  Ga = require("./ga.js"),
+  Ga = require("./Gauth.js"),
   parseURL = function (e) {
     var r = url.parse(e, !0),
       t = r.pathname.substr(1).split(":"),
@@ -36,6 +36,7 @@ var url = require("./url.js"),
     var data = [];
     for (let k in e ){
       data.push({
+        issuer: e[k].issuer,
         access: e[k].label.length > 0 ? e[k].issuer + " (" + e[k].label + ")" : e[k].issuer,
         token: String("totp" == e[k].type ? Ga.totp(e[k]) : '------').replace(/^([\w\-]{3})/, '$1 '),
         type: e[k].type,
