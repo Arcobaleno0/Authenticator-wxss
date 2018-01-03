@@ -64,7 +64,7 @@
     color: #ffffff;
     width: 3.5rem;
     height: 3.5rem;
-    line-height:3.5rem; 
+    line-height:1.666em; 
     font-size: 2rem;
     text-align: center;
     white-space: nowrap;
