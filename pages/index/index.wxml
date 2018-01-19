@@ -16,7 +16,7 @@
         </view>
     </view>
     <view class="div onlineService" bindtap="showWidget">
-       <view class="a add"> + </view>
+       <view class="a add"><image style="width: 100%; height:100%" mode="aspectFit" src="../../images/button.svg"/></view>
     </view>
     <modal title="是否删除 {{ deleteinfo }}" confirm-text="删除帐号" cancel-text="取消" hidden="{{modalHidden}}" mask bindconfirm="modalDelete" bindcancel="modalChange">
       删除该帐号会<view class="span b">导致您无法</view>生成验证码，但<view class="span b">不会</view>关闭双重身份验证。
