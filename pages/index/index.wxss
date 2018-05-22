@@ -50,6 +50,14 @@
 .am-fr {
     float: right;
 }
+.email{
+    display:block;
+    width:88%;
+    word-break:keep-all;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
 .onlineService {
     position: fixed;
     right: 1em;
