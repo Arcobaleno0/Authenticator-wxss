@@ -58,13 +58,13 @@
     height: 3.5rem;
     background-color: rgb(221,44,1);
     border-radius: 100%;
-    z-index: 9999;
+    z-index: 2;
 }
 .add {
     color: #ffffff;
     width: 3.5rem;
     height: 3.5rem;
-    line-height:1.666em; 
+    line-height:1.666em;
     font-size: 2rem;
     text-align: center;
     white-space: nowrap;

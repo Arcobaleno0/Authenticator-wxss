@@ -1,7 +1,6 @@
 //app.js
 App({
-    onLaunch: function() {
-    },
+    onLaunch: function() {},
     globalData: {
         // DATA: wx.getStorageSync('DATA') || []
     }

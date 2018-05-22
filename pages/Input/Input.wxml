@@ -20,7 +20,7 @@
                     </view>
                 </picker>
                 <view class="span am-fr">
-                      <button formType="submit" class="app-button-wide mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect">添加</button>
+                    <button formType="submit" class="app-button-wide mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect">添加</button>
                 </view>
             </view>
         </form>

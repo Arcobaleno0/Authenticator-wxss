@@ -1,7 +1,7 @@
 <view class="body">
     <view class="div auth">
         <view class="ul">
-            <view class="li list" wx:key="k" wx:for="{{DATA}}" data="k" bindlongpress="Longpress" data-id="{{ item.id }}" data-access="{{ item.access }}" data-issuer="{{ item.issuer }}">
+            <view class="li list" wx:key="k" wx:for="{{DATA}}" data="k" bindlongpress="Longpress" bindtap="Tappress" data-id="{{ item.id }}" data-access="{{ item.access }}" data-issuer="{{ item.issuer }}" data-label="{{ item.label }}" data-token="{{item.token}}">
                 <view class="h1 token">{{item.token}}</view>
                 <view class="div info am-cf">
                     <view class="span email am-fl">
@@ -16,24 +16,28 @@
         </view>
     </view>
     <view class="div onlineService" bindtap="showWidget">
-       <view class="a add"><image style="width: 100%; height:100%" mode="aspectFit" src="../../images/button.svg"/></view>
+        <view class="a add">
+            <image style="width: 100%; height:100%" mode="aspectFit" src="../../images/button.svg" />
+        </view>
     </view>
     <modal title="是否删除 {{ deleteinfo }}" confirm-text="删除帐号" cancel-text="取消" hidden="{{modalHidden}}" mask bindconfirm="modalDelete" bindcancel="modalChange">
-      删除该帐号会<view class="span b">导致您无法</view>生成验证码，但<view class="span b">不会</view>关闭双重身份验证。
-      <view class="div">　</view>
-      <view class="div">
-      您可能会因此无法登录自己的帐号。在删除该帐号之前，请执行以下操作:
-      </view>
-      <view class="div">　</view>
-      <view class="div">
-      -关闭该帐号的两双重身份验证功能，或者
-      </view>
-      <view class="div">　</view>
-      <view class="div">
-      -确保您可以通过其他方法生成验证码。
-      </view>
+        删除该帐号会
+        <view class="span b">导致您无法</view>生成验证码，但
+        <view class="span b">不会</view>关闭双重身份验证。
+        <view class="div">　</view>
+        <view class="div">
+            您可能会因此无法登录自己的帐号。在删除该帐号之前，请执行以下操作:
+        </view>
+        <view class="div">　</view>
+        <view class="div">
+            -关闭该帐号的两双重身份验证功能，或者
+        </view>
+        <view class="div">　</view>
+        <view class="div">
+            -确保您可以通过其他方法生成验证码。
+        </view>
     </modal>
-    <modal title="重命名" confirm-text="保存" cancel-text="取消" hidden="{{ rehidden }}"  mask bindconfirm="modalreChange" bindcancel="modalre">
+    <modal title="重命名" confirm-text="保存" cancel-text="取消" hidden="{{ rehidden }}" mask bindconfirm="modalreChange" bindcancel="modalre">
         <view class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label is-upgraded is-focused">
             <input class="mdl-textfield__input" type="text" name="username" id="username" value="{{ rename }}" data-id="{{ reid }}" bindinput="userNameInput" />
             <view class="label mdl-textfield__label"></view>

@@ -1,6 +1,7 @@
+/*jshint esversion: 6 */
 var Config = {
     get: function() {
-        var data = (wx.getStorageSync('DATA') || []),
+        var data = (wx.getStorageSync('DATA') || {}),
             json = {};
         if (Array.isArray(data)) {
             data.forEach((item, k) => {
@@ -9,10 +10,10 @@ var Config = {
             return json;
         }
         return data;
-    },         
+    },
     update: function(value) {
         var data = this.get();
-        data[Object.keys(data).length] = value;
+        data[(new Date()).getTime()] = value;
         wx.setStorageSync('DATA', data);
     },
     del: function(key) {
@@ -21,9 +22,9 @@ var Config = {
         wx.setStorageSync('DATA', data);
     },
     valupdate: function(key, key1, value) {
-      var data = this.get();
-      data[key][key1] = value;
-      wx.setStorageSync('DATA', data);
+        var data = this.get();
+        data[key][key1] = value;
+        wx.setStorageSync('DATA', data);
     }
 };
 
