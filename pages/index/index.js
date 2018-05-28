@@ -66,7 +66,7 @@ Page({
                             break;
                         case 1:
                             wx.navigateTo({
-                                url: '/pages/Input/Input',
+                                url: '/pages/input/input',
                             });
                             break;
                         case 2:
