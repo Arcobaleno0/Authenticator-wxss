@@ -1,5 +1,19 @@
+@import "../../styles/bootstrap.wxss"
+.modal:before {
+    content: "\200B";
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+}
+.modal-dialog{
+    vertical-align: middle;
+    display:inline-block;
+    max-width: 100%;
+    border-radius: 0;
+}
 .body{
-  margin: 0;
+    background-color:none;
+    margin: 0;
 }
 .body:before {
     background-color: rgb(242,242,242);
@@ -79,6 +93,9 @@
     vertical-align: middle;
 }
 
+/**
+ * 输入MD风格
+ */
 .mdl-textfield--floating-label.is-focused .mdl-textfield__label, .mdl-textfield--floating-label.has-placeholder .mdl-textfield__label {
     color: rgb(66,133,244);
     font-size: 12px;

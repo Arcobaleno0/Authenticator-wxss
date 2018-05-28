@@ -12,6 +12,9 @@
     top: 0;
     z-index: -1;
 }
+/**
+ * MD
+ */
 .mdl-textfield--floating-label.is-error .mdl-textfield__label{
     color: #ff0000;
     font-size: 12px;

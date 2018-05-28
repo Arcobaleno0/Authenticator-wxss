@@ -80,6 +80,9 @@ Page({
         });
     },
     Tappress: function(event) {
+
+    },
+    Longpress: function(event) {
         wx.setClipboardData({
             data: event.currentTarget.dataset.token.replace(/\s/, ''),
             success: (res) => {
@@ -90,8 +93,6 @@ Page({
                 });
             }
         });
-    },
-    Longpress: function(event) {
         wx.showActionSheet({
             itemList: ['修改', '删除'],
             success: (res) => {
