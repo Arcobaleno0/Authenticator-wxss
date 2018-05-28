@@ -12,7 +12,7 @@
     border-radius: 0;
 }
 .body{
-    background-color:none;
+    background:none;
     margin: 0;
 }
 .body:before {
