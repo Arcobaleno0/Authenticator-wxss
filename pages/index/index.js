@@ -2,6 +2,7 @@
 //获取应用实例
 var TOOL = require('../../utils/index.js');
 var Config = require('../../utils/Config.js').config;
+var Interval = null;
 Page({
     /**
      * 页面的初始数据
@@ -9,17 +10,17 @@ Page({
     data: {
         DATA: TOOL.parse_code(Config.get()),
         timeOut: 30,
-        modalHidden: true,
+        DeleteModal: true,
         deleteinfo: '',
         deleteid: null,
         rename: '',
         reid: 0,
-        rehidden: true
+        RenameModal: true
     },
     showCode: function(reload) {
         reload = reload || false;
         var sec = new Date().getSeconds();
-        var secsToNext = (sec > 30) ? 60 - sec : 30 - sec;
+        var secsToNext = (sec >= 30) ? 60 - sec : 30 - sec;
         if ((sec === 0) || (sec == 30) || reload) {
             this.setData({
                 DATA: TOOL.parse_code(Config.get()),
@@ -33,9 +34,13 @@ Page({
     },
     onShow: function() {
         this.showCode(true);
+        this.onReady();
+    },
+    onHide: function() {
+        return Interval && clearInterval(Interval);
     },
     onReady: function(e) {
-        setInterval(() => {
+        Interval = setInterval(() => {
             this.showCode();
         }, 500);
     },
@@ -79,8 +84,11 @@ Page({
             }
         });
     },
-    Tappress: function(event) {
-
+    substr: function(str, start, length) {
+        if (str.length > length) {
+            return str.substr(start, length) + '...';
+        }
+        return str;
     },
     Longpress: function(event) {
         wx.setClipboardData({
@@ -88,7 +96,7 @@ Page({
             success: (res) => {
                 wx.showToast({
                     title: '验证码已复制',
-                    icon: 'success',
+                    icon: 'none',
                     duration: 1000
                 });
             }
@@ -102,14 +110,14 @@ Page({
                             this.setData({
                                 reid: event.currentTarget.dataset.id,
                                 rename: event.currentTarget.dataset.label,
-                                rehidden: false
+                                RenameModal: false
                             });
                             break;
                         case 1:
                             this.setData({
                                 deleteid: event.currentTarget.dataset.id,
-                                deleteinfo: event.currentTarget.dataset.access,
-                                modalHidden: false
+                                deleteinfo: this.substr(event.currentTarget.dataset.access + '?', 0, 16),
+                                DeleteModal: false
                             });
                             break;
                     }
@@ -119,18 +127,18 @@ Page({
     },
     modalChange: function() {
         this.setData({
-            modalHidden: true
+            DeleteModal: true
         });
     },
     modalre: function() {
         this.setData({
-            rehidden: true
+            RenameModal: true
         });
     },
     modalDelete: function() {
         Config.del(this.data.deleteid);
         this.setData({
-            modalHidden: true
+            DeleteModal: true
         });
         this.showCode(true);
     },
@@ -138,7 +146,7 @@ Page({
         Config.valupdate(this.data.reid, 'label', this.data.rename);
         this.showCode(true);
         this.setData({
-            rehidden: true
+            RenameModal: true
         });
     },
     userNameInput: function(e) {

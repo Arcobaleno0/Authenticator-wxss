@@ -1,16 +1,4 @@
-@import "../../styles/bootstrap.wxss"
-.modal:before {
-    content: "\200B";
-    display: inline-block;
-    height: 100%;
-    vertical-align: middle;
-}
-.modal-dialog{
-    vertical-align: middle;
-    display:inline-block;
-    max-width: 100%;
-    border-radius: 0;
-}
+@import "../../styles/md.wxss"
 .body{
     background:none;
     margin: 0;
@@ -46,6 +34,7 @@
   padding: 0.8em;
 }
 .auth .ul .li .token{
+  margin:0;
   color: rgb(66,133,244);
 }
 .auth .ul .li .info{
@@ -76,86 +65,61 @@
     position: fixed;
     right: 1em;
     bottom: 1em;
-    width: 3.5rem;
-    height: 3.5rem;
-    background-color: rgb(221,44,1);
-    border-radius: 100%;
     z-index: 2;
 }
-.add {
-    color: #ffffff;
-    width: 3.5rem;
-    height: 3.5rem;
-    line-height:1.666em;
-    font-size: 2rem;
-    text-align: center;
-    white-space: nowrap;
-    vertical-align: middle;
+.dialog+.backdrop{
+    background:rgba(0,0,0,0.5);
+    z-index:3;
+}
+.dialog {
+    z-index:4;
+}
+.mdl-dialog__title {
+    padding:5px 10px 0;
+    margin:0;
+    font-size:20px;
+}
+.mdl-dialog__actions{
+    padding:0;
+}
+.mdl-dialog__content {
+    padding:0px 10px;
+}
+#rename .mdl-dialog__content {
+    color:#000000;
+}
+.meta > .class:first-child {
+    margin-right: 16px;
+}
+.logo {
+    /*width: 44px;*/
+    /*height: 44px;*/
+    font-size: 32px;
 }
 
-/**
- * 输入MD风格
- */
-.mdl-textfield--floating-label.is-focused .mdl-textfield__label, .mdl-textfield--floating-label.has-placeholder .mdl-textfield__label {
-    color: rgb(66,133,244);
-    font-size: 12px;
-    top: 4px;
-    visibility: visible;
-}
-.mdl-textfield.is-focused .mdl-textfield__label:after,.mdl-textfield.is-error .mdl-textfield__label:after {
-    left: 0;
-    visibility: visible;
-    width: 100%;
-}
-.mdl-textfield {
-    position: relative;
-    font-size: 16px;
+.text-middle{
     display: inline-block;
-    box-sizing: border-box;
-    width: 300px;
-    max-width: 100%;
-    margin: 0;
+    vertical-align: middle;
+    word-wrap: break-word;
 }
-.mdl-textfield__input {
-    border: none;
-    border-bottom: 1px solid rgba(0,0,0,.12);
-    display: block;
-    font-size: 16px;
-    margin: 0;
-    padding: 4px 0;
-    width: 100%;
-    background: 0 0;
-    text-align: left;
-    color: #000;
+
+.delete_dialog_title{
+  display: inline-block;
+  vertical-align: middle;
+  word-wrap: break-word;
+  padding: 5px 0;
+  font-size:20px;
 }
-.mdl-textfield--floating-label .mdl-textfield__label {
-    transition-duration: .2s;
-    transition-timing-function: cubic-bezier(.4,0,.2,1);
+.delete_dialog_title .warning{
+  float:left;
+  clear: both;
+  padding:5px 5px 0 0;
 }
-.mdl-textfield__label {
-    bottom: 0;
-    color: rgba(0,0,0,.26);
-    font-size: 16px;
-    left: 0;
-    right: 0;
-    pointer-events: none;
-    position: absolute;
-    display: block;
-    top: 0;
-    width: 100%;
-    overflow: hidden;
-    white-space: nowrap;
-    text-align: left;
+.delete_dialog_title .name{
+  color:#000000;
 }
-.mdl-textfield__label:after {
-    background-color: rgb(66,133,244);
-    bottom: 0;
-    content: '';
-    height: 2px;
-    left: 45%;
-    position: absolute;
-    transition-duration: .2s;
-    transition-timing-function: cubic-bezier(.4,0,.2,1);
-    visibility: hidden;
-    width: 10px;
+.delete_dialog_content{
+  color:#000000;
+  padding-top:5px;
+  font-size:16px;
 }
