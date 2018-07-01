@@ -1,8 +1,8 @@
 {
     "pages": [
+        "pages/input/input",        
         "pages/index/index",
         "pages/update/update",
-        "pages/input/input",
         "pages/setting/setting"
     ],
     "window": {

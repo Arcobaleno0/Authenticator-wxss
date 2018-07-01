@@ -1,17 +1,28 @@
 <view class="body">
     <view class="div">
         <form bindsubmit="formSubmit">
-            <view class="mdl-card__supporting-text">
+            <view class="div mdl-card__supporting-text">
+                <view class="div mdl-textfield mdl-js-textfield mdl-textfield--floating-label is-upgraded {{usernamefocus ? 'is-focused' : ''}} {{usernameinput ? 'is-dirty' : ''}}">
+                    <input class="mdl-textfield__input" bindfocus="Inputfocus" bindblur="Inputblur" bindinput="Inputinput" type="text" name="username" id="username" value="" />
+                    <label class="mdl-textfield__label" for="username">输入账户名称</label>
+                </view>
+                <view class="div mdl-textfield mdl-js-textfield mdl-textfield--floating-label is-upgraded {{tokenfocus ? 'is-focused' : ''}} {{tokeninput ? 'is-dirty' : ''}} {{tokenerror ? 'is-invalid' : ''}}">
+                    <input class="mdl-textfield__input" bindfocus="Inputfocus" bindblur="Inputblur" bindinput="Inputinput" type="text" name="token" id="token" value="" />
+                    <label class="mdl-textfield__label" for="token">输入你的密钥</label>
+                    <view class="span mdl-textfield__error">{{ errorMsg }}</view>
+                </view>
+            </view>
+            <!-- <view class="">
                 <view class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label is-upgraded {{usernamefocus ? 'is-focused' : ''}} {{usernameinput ? 'is-dirty' : ''}}">
                     <input class="mdl-textfield__input" bindfocus="Inputfocus" bindblur="Inputblur" bindinput="Inputinput" type="text" name="username" id="username" value="" />
-                    <view class="label mdl-textfield__label">输入账户名称</view>
+                    <view class="label mdl-textfield__label"></view>
                 </view>
                 <view class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label is-upgraded {{tokenfocus ? 'is-focused' : ''}} {{tokeninput ? 'is-dirty' : ''}} {{tokenerror ? 'is-error' : ''}}">
                     <input class="mdl-textfield__input" bindfocus="Inputfocus" bindblur="Inputblur" bindinput="Inputinput" type="text" name="token" id="token" value="" />
                     <view class="label mdl-textfield__label">输入你的密钥</view>
                     <view class="app-error">{{errorMsg}}</view>
                 </view>
-            </view>
+            </view> -->
             <input type="text" name="type" value="{{index}}" class="hide" />
             <view class="div mdl-card__supporting-text am-fc">
                 <picker class="span am-fl" bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
@@ -20,7 +31,9 @@
                     </view>
                 </picker>
                 <view class="span am-fr">
-                    <button formType="submit" class="app-button-wide mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect">添加</button>
+                    <button formType="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+                        添加
+                    </button>
                 </view>
             </view>
         </form>
