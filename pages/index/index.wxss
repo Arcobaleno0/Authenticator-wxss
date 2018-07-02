@@ -1,126 +1,149 @@
 @import "../../styles/md.wxss"
-.body{
-    background:none;
+.body {
+  background:none;
     margin: 0;
 }
+
 .body:before {
-    background-color: rgb(242,242,242);
-    width: 100%;
-    content: '';
-    position: fixed;
-    display: block;
-    bottom: 0;
-    top: 0;
-    z-index: -1;
+  background-color: rgb(242,242,242);
+  width: 100%;
+  content: '';
+  position: fixed;
+  display: block;
+  bottom: 0;
+  top: 0;
+  z-index: -1;
 }
-.ul{
+
+.ul {
   margin: 0;
   padding: 0;
 }
-.li{
+
+.li {
   list-style: none;
 }
-.auth{
-  margin-bottom: 5em;
+
+.auth {
+  margin-bottom: 7.5em;
 }
-.auth .h1{
+
+.auth .h1 {
   margin: 0 auto;
 }
-.auth .ul .li{
+
+.auth .ul .li {
   margin-top: 1.5em;
   background-color: #ffffff;
 }
-.auth .ul .li.list{
+
+.auth .ul .li.list {
   padding: 0.8em;
 }
-.auth .ul .li .token{
-  margin:0;
-  color: rgb(66,133,244);
+
+.auth .ul .li .token {
+  margin: 0;
+  color: #2196f3;
 }
-.auth .ul .li .info{
+
+.auth .ul .li .info {
   padding: 0.4em 0;
 }
+
 .am-cf:after, .am-cf:before {
-    content: " ";
-    display: table;
+  content: " ";
+  display: table;
 }
+
 .am-cf:after {
-    clear: both;
-}
-.am-fl {
-    float: left;
-}
-.am-fr {
-    float: right;
-}
-.email{
-    display:block;
-    width:88%;
-    word-break:keep-all;
-    white-space:nowrap;
-    overflow:hidden;
-    text-overflow:ellipsis;
-}
-.onlineService {
-    position: fixed;
-    right: 1em;
-    bottom: 1em;
-    z-index: 2;
-}
-.dialog+.backdrop{
-    background:rgba(0,0,0,0.5);
-    z-index:3;
-}
-.dialog {
-    z-index:4;
-}
-.mdl-dialog__title {
-    padding:5px 10px 0;
-    margin:0;
-    font-size:20px;
-}
-.mdl-dialog__actions{
-    padding:0;
-}
-.mdl-dialog__content {
-    padding:0px 10px;
-}
-#rename .mdl-dialog__content {
-    color:#000000;
-}
-.meta > .class:first-child {
-    margin-right: 16px;
-}
-.logo {
-    font-size: 32px;
-}
-
-.text-middle{
-    display: inline-block;
-    vertical-align: middle;
-    word-wrap: break-word;
-}
-
-.delete_dialog_title{
-  padding: 5px 0;
-  font-size:20px;
-}
-.delete_dialog_title .warning{
-  float:left;
   clear: both;
-  padding:5px 5px 0 0;
 }
-.delete_dialog_title .name{
-  overflow : hidden;
+
+.am-fl {
+  float: left;
+}
+
+.am-fr {
+  float: right;
+}
+
+.email {
+  display: block;
+  width: 88%;
+  word-break: keep-all;
+  white-space: nowrap;
+  overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.onlineService {
+  position: fixed;
+  right: 1em;
+  bottom: 1em;
+  z-index: 2;
+}
+
+.dialog+.backdrop {
+  background: rgba(0,0,0,0.5);
+  z-index: 3;
+}
+
+.dialog {
+  z-index: 4;
+}
+
+.mdl-dialog__title {
+  padding: 5px 10px 0;
+  margin: 0;
+  font-size: 20px;
+}
+
+.mdl-dialog__actions {
+  padding: 0;
+}
+
+.mdl-dialog__content {
+  padding: 0px 10px;
+}
+
+#rename .mdl-dialog__content {
+  color: #000000;
+}
+
+.meta > .class:first-child {
+  margin-right: 16px;
+}
+
+.delete_dialog_title {
+  padding-top: 5px;
+  display: flex;
+}
+
+.delete_dialog_title .warning {
+  padding-right:5px;
+  font-size: 32px;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  vertical-align: middle;
+}
+
+.delete_dialog_title .title_name {
+  display: box;
   display: -webkit-box;
+  display: -moz-box;
+  -webkit-box-pack: center;
+  -moz-box-pack: center;
+  vertical-align: middle;
+  overflow: hidden;
+  text-overflow: ellipsis;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
-  margin:0;
-  color:#000000;
+  color: #000000;
+  font-size: 20px;
 }
-.delete_dialog_content{
-  color:#000000;
-  padding-top:5px;
-  font-size:16px;
+
+.delete_dialog_content {
+  color: #000000;
+  padding-top: 5px;
+  font-size: 16px;
 }

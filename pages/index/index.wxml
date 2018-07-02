@@ -4,7 +4,9 @@
             <view class="ul">
                 <block wx:for="{{ DATA }}" wx:key="k">
                     <view class="li list" data="k" bindlongpress="Longpress" bindtap="Tappress" data-id="{{ item.id }}" data-access="{{ item.access1 }}" data-issuer="{{ item.issuer }}" data-label="{{ item.label }}" data-token="{{ item.token }}">
-                        <view class="h3 token"><text class="strong">{{ item.token }}</text></view>
+                        <view class="h3 token">
+                            <text class="strong">{{ item.token }}</text>
+                        </view>
                         <view class="div info am-cf">
                             <view class="span email am-fl">
                                 {{ item.access }}
@@ -44,17 +46,15 @@
         <!-- Delete -->
         <view id="delete" class="dialog fixed class mdl-dialog" hidden="{{ DeleteModal }}">
             <view class="div class mdl-dialog__content">
-                <view class="div class delete_dialog_title text-middle">
-                    <view class="div class warning">
-                        <view class="i class material-icons logo">warning</view>
-                    </view>
-                    <view class="h5 class name">
+                <view class="div class delete_dialog_title">
+                    <view class="i class material-icons warning">warning</view>
+                    <view class="span class title_name">
                         <text class="class">是否删除 </text>
                         <text class="strong class">{{ deleteinfo }}</text>
                         <text class="class">？</text>
                     </view>
                 </view>
-                <view class="div class delete_dialog_content text-middle">
+                <view class="div class delete_dialog_content">
                     <view class="div class">
                         <text class="class">删除该帐号会</text>
                         <text class="strong class">导致您无法</text>
@@ -82,5 +82,25 @@
             </view>
         </view>
         <view class="div backdrop" bindtap="modalChange" hidden="{{ DeleteModal }}"></view>
+        <!-- Error -->
+        <view id="error" class="dialog fixed class mdl-dialog" hidden="{{ ErrorModal }}">
+            <view class="div class mdl-dialog__content">
+                <view class="div class delete_dialog_title">
+                    <view class="i class material-icons warning">warning</view>
+                    <view class="span class title_name">
+                        <text class="class">错误</text>
+                    </view>
+                </view>
+                <view class="div class delete_dialog_content">
+                    <view class="div class">
+                        <text class="class">无法解读 QR 码</text>
+                    </view>
+                </view>
+            </view>
+            <view class="div class mdl-dialog__actions">
+                <button type="button" class="class mdl-button mdl-js-button mdl-button--primary" bindtap="ErrorTap">确定</button>
+            </view>
+        </view>
+        <view class="div backdrop" bindtap="ErrorTap" hidden="{{ ErrorModal }}"></view>
     </view>
 </view>

@@ -11,11 +11,12 @@ Page({
         DATA: TOOL.parse_code(Config.get()),
         timeOut: 30,
         DeleteModal: true,
+        ErrorModal: true,
+        RenameModal: true,
         deleteinfo: '',
         deleteid: null,
         rename: '',
         reid: 0,
-        RenameModal: true
     },
     showCode: function(reload) {
         reload = reload || false;
@@ -56,9 +57,8 @@ Page({
                                 success: (res) => {
                                     var d = TOOL.parseURL(res.result);
                                     if (d === false) {
-                                        return wx.showModal({
-                                            content: '无法解读 QR 码',
-                                            showCancel: false,
+                                        return this.setData({
+                                            ErrorModal: false,
                                         });
                                     }
                                     Config.update(d);
@@ -122,6 +122,11 @@ Page({
     modalChange: function() {
         this.setData({
             DeleteModal: true
+        });
+    },
+    ErrorTap: function() {
+        this.setData({
+            ErrorModal: true
         });
     },
     modalre: function() {
