@@ -44,7 +44,7 @@
         <!-- Delete -->
         <view id="delete" class="dialog fixed class mdl-dialog" hidden="{{ DeleteModal }}">
             <view class="div class mdl-dialog__content">
-                <view class="div class delete_dialog_title">
+                <view class="div class delete_dialog_title text-middle">
                     <view class="div class warning">
                         <view class="i class material-icons logo">warning</view>
                     </view>
@@ -53,8 +53,8 @@
                         <text class="strong class">{{ deleteinfo }}</text>
                     </view>
                 </view>
-                <view class="div class delete_dialog_content">
-                    <view class="div class text-middle">
+                <view class="div class delete_dialog_content text-middle">
+                    <view class="div class">
                         <text class="class">删除该帐号会</text>
                         <text class="strong class">导致您无法</text>
                         <text class="class">生成验证码，但</text>
@@ -62,15 +62,15 @@
                         <text class="class">关闭双重身份验证。您可能会因此无法登录自己的帐号。</text>
                     </view>
                     <view class="div class">　</view>
-                    <view class="div class text-middle">
+                    <view class="div class">
                         <text class="class">在删除该帐号之前，请执行以下操作:</text>
                     </view>
                     <view class="div class">　</view>
-                    <view class="div class text-middle">
+                    <view class="div class">
                         <text class="class">·关闭该帐号的两双重身份验证功能，或者</text>
                     </view>
                     <view class="div class">　</view>
-                    <view class="div class text-middle">
+                    <view class="div class">
                         <text class="class">·确保您可以通过其他方法生成验证码。</text>
                     </view>
                 </view>

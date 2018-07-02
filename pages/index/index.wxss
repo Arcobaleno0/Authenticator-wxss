@@ -104,9 +104,6 @@
 }
 
 .delete_dialog_title{
-  display: inline-block;
-  vertical-align: middle;
-  word-wrap: break-word;
   padding: 5px 0;
   font-size:20px;
 }

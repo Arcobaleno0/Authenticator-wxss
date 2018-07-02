@@ -1,7 +1,7 @@
 {
     "pages": [
-        "pages/input/input",        
         "pages/index/index",
+        "pages/input/input",
         "pages/update/update",
         "pages/setting/setting"
     ],
