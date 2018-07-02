@@ -48,9 +48,10 @@
                     <view class="div class warning">
                         <view class="i class material-icons logo">warning</view>
                     </view>
-                    <view class="div class name">
+                    <view class="h5 class name">
                         <text class="class">是否删除 </text>
                         <text class="strong class">{{ deleteinfo }}</text>
+                        <text class="class">？</text>
                     </view>
                 </view>
                 <view class="div class delete_dialog_content text-middle">

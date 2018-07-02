@@ -84,12 +84,6 @@ Page({
             }
         });
     },
-    substr: function(str, start, length) {
-        if (str.length > length) {
-            return str.substr(start, length) + '...';
-        }
-        return str;
-    },
     Longpress: function(event) {
         wx.setClipboardData({
             data: event.currentTarget.dataset.token.replace(/\s/, ''),
@@ -116,7 +110,7 @@ Page({
                         case 1:
                             this.setData({
                                 deleteid: event.currentTarget.dataset.id,
-                                deleteinfo: this.substr(event.currentTarget.dataset.access + '?', 0, 16),
+                                deleteinfo: event.currentTarget.dataset.access,
                                 DeleteModal: false
                             });
                             break;
