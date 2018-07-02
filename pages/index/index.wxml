@@ -3,7 +3,7 @@
         <view class="div auth">
             <view class="ul">
                 <block wx:for="{{ DATA }}" wx:key="k">
-                    <view class="li list" data="k" bindlongpress="Longpress" bindtap="Tappress" data-id="{{ item.id }}" data-access="{{ item.access1 }}" data-issuer="{{ item.issuer }}" data-label="{{ item.label }}" data-token="{{ item.token }}">
+                    <view class="li list" data="k" catchlongpress="Longpress" data-id="{{ item.id }}" data-access="{{ item.access1 }}" data-issuer="{{ item.issuer }}" data-label="{{ item.label }}" data-token="{{ item.token }}">
                         <view class="h3 token">
                             <text class="strong">{{ item.token }}</text>
                         </view>
@@ -13,7 +13,7 @@
                             </view>
                             <view class="span time am-fr">
                                 <block wx:if="{{ item.type == 'hotp' }}">
-                                    <view bindtap='getHotp' data-id="{{ item.id }}">⊙</view>
+                                    <view catchtap='getHotp' data-id="{{ item.id }}">⊙</view>
                                 </block>
                                 <block wx:else>
                                     <text>{{ timeOut }}s</text>
@@ -25,26 +25,26 @@
             </view>
         </view>
         <!-- Controller Button -->
-        <button type="button" class="onlineService mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" bindtap="showWidget">
+        <button type="button" class="onlineService mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" catchtap="showWidget">
             <view class="i class material-icons">add</view>
         </button>
         <!-- Rename -->
-        <view id="rename" class="dialog fixed class mdl-dialog" hidden="{{ RenameModal }}">
+        <view id="rename" class="dialog fixed class mdl-dialog" hidden="{{ RenameModal }}" catchtouchmove="catchtouchmove">
             <view class="h6 class mdl-dialog__title">重命名</view>
             <view class="div class mdl-dialog__content">
                 <view class="div class mdl-textfield mdl-js-textfield is-focused is-dirty">
-                    <input class="class mdl-textfield__input" type="text" name="username" id="issue" value="{{ rename }}" data-id="{{ reid }}" bindinput="userNameInput" />
+                    <input class="class mdl-textfield__input" type="text" name="username" id="issue" value="{{ rename }}" data-id="{{ reid }}" catchinput="userNameInput" />
                     <label class="class mdl-textfield__label" for="issue"></label>
                 </view>
             </view>
             <view class="div class mdl-dialog__actions">
-                <button type="button" class="class mdl-button mdl-js-button mdl-button--primary" bindtap="modalreChange">保存</button>
-                <button type="button" class="class mdl-button mdl-js-button mdl-button--primary" bindtap="modalre">取消</button>
+                <button type="button" class="class mdl-button mdl-js-button mdl-button--primary" catchtap="modalreChange">保存</button>
+                <button type="button" class="class mdl-button mdl-js-button mdl-button--primary" catchtap="modalre">取消</button>
             </view>
         </view>
-        <view class="div backdrop" hidden="{{ RenameModal }}" bindtap="modalre"></view>
+        <view class="div backdrop" hidden="{{ RenameModal }}" catchtap="modalre" catchtouchmove="catchtouchmove"></view>
         <!-- Delete -->
-        <view id="delete" class="dialog fixed class mdl-dialog" hidden="{{ DeleteModal }}">
+        <view id="delete" class="dialog fixed class mdl-dialog" hidden="{{ DeleteModal }}" catchtouchmove="catchtouchmove">
             <view class="div class mdl-dialog__content">
                 <view class="div class delete_dialog_title">
                     <view class="i class material-icons warning">warning</view>
@@ -77,13 +77,13 @@
                 </view>
             </view>
             <view class="div class mdl-dialog__actions">
-                <button type="button" class="class mdl-button mdl-js-button mdl-button--primary" bindtap="modalDelete">删除账号</button>
-                <button type="button" class="class mdl-button mdl-js-button mdl-button--primary" bindtap="modalChange">取消</button>
+                <button type="button" class="class mdl-button mdl-js-button mdl-button--primary" catchtap="modalDelete">删除账号</button>
+                <button type="button" class="class mdl-button mdl-js-button mdl-button--primary" catchtap="modalChange">取消</button>
             </view>
         </view>
-        <view class="div backdrop" bindtap="modalChange" hidden="{{ DeleteModal }}"></view>
+        <view class="div backdrop" catchtap="modalChange" hidden="{{ DeleteModal }}" catchtouchmove="catchtouchmove"></view>
         <!-- Error -->
-        <view id="error" class="dialog fixed class mdl-dialog" hidden="{{ ErrorModal }}">
+        <view id="error" class="dialog fixed class mdl-dialog" hidden="{{ ErrorModal }}" catchtouchmove="catchtouchmove">
             <view class="div class mdl-dialog__content">
                 <view class="div class delete_dialog_title">
                     <view class="i class material-icons warning">warning</view>
@@ -98,9 +98,13 @@
                 </view>
             </view>
             <view class="div class mdl-dialog__actions">
-                <button type="button" class="class mdl-button mdl-js-button mdl-button--primary" bindtap="ErrorTap">确定</button>
+                <button type="button" class="class mdl-button mdl-js-button mdl-button--primary" catchtap="ErrorTap">确定</button>
             </view>
         </view>
-        <view class="div backdrop" bindtap="ErrorTap" hidden="{{ ErrorModal }}"></view>
+        <view class="div backdrop" catchtap="ErrorTap" hidden="{{ ErrorModal }}"></view>
+        <view class="div footer_panel mdl-js-snackbar mdl-snackbar {{Panel?'mdl-snackbar--active':''}}">
+            <view class="div mdl-snackbar__text">test</view>
+        </view>
+        <view class="div backdrop" catchtap="PanelTap" hidden="{{ !Panel }}" catchtouchmove="catchtouchmove"></view>
     </view>
 </view>

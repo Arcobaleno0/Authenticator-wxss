@@ -13,6 +13,7 @@ Page({
         DeleteModal: true,
         ErrorModal: true,
         RenameModal: true,
+        Panel: false,
         deleteinfo: '',
         deleteid: null,
         rename: '',
@@ -46,6 +47,9 @@ Page({
         }, 500);
     },
     showWidget: function() {
+        return this.setData({
+            Panel: true,
+        });
         wx.showActionSheet({
             itemList: ['扫描二维码', '输入提供的密钥', '设置面板'],
             success: (res) => {
@@ -156,5 +160,8 @@ Page({
     getHotp: function(event) {
         console.log(this.data);
         console.log(event);
+    },
+    catchtouchmove: function() {
+        return false;
     }
 });
