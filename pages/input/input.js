@@ -52,6 +52,7 @@ Page({
         }
         if (data.token.length < 16 || data.token.replace('\s', '').length < 16) {
             this.setData({
+                tokeninput: true,
                 errorMsg: '密钥值太短'
             });
             this.setData(MakeData('tokenerror', true));
