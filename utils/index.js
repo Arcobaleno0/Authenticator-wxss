@@ -6,18 +6,18 @@
     exports.parseURL = function(e) {
         var r = url.parse(e, !0),
             t = r.pathname.substr(1).split(":"),
-            s = r.query,
-            obj = {
-                "secret": "",
-                "issuer": "",
-                "algorithm": "SHA1",
-                "digits": "6",
-                "period": "30",
-                "encoding": "base32",
-                "type": "totp",
-                "label": ""
-            };
-        s = Object.assign(obj, s);
+            s = Object.assign({
+                secret: '',
+                encoding: "base32",
+                algorithm: "SHA1",
+                counter: null,
+                issuer: '',
+                type: "totp",
+                digits: 6,
+                epoch: 0,
+                step: 30,
+                label: '',
+            }, r.query);
         if (!('hostname' in r)) {
             return !1;
         }
@@ -32,7 +32,9 @@
         if ((!('secret' in s)) || (s.secret.length === 0)) {
             return !1;
         }
-        return s.type = r.hostname.toLowerCase(), s.issuer = decodeURIComponent(t[0]), s.label = decodeURIComponent(t.length > 1 ? t[1] : ""), s;
+        s.type = r.hostname.toLowerCase();
+        s.counter = ((s.type == 'totp') ? null : 0);
+        return s.issuer = decodeURIComponent(t[0]), s.label = decodeURIComponent(t.length > 1 ? t[1] : ""), s;
     };
     exports.parse_code = function(e) {
         var data = [];

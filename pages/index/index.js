@@ -64,7 +64,7 @@ Page({
                         ErrorModal: false,
                     });
                 }
-                Config.update(d);
+                Config.insert(d);
                 this.setData({
                     DATA: TOOL.parse_code(Config.get())
                 });

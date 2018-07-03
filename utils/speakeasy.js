@@ -1,7 +1,6 @@
 /*jshint esversion: 6 */
 (() => {
     'use strict';
-
     var base32 = require('./base32.js');
     var CryptoJS = require('./CryptoJS.js');
     var Buffer = require('./Buffer.js');
@@ -31,17 +30,14 @@
         var algorithm = (options.algorithm || 'sha1').toLowerCase();
 
         // Backwards compatibility - deprecated
-        if (options.key != null) {
+        if (options.key !== null) {
             console.warn('Speakeasy - Deprecation Notice - Specifying the secret using `key` is no longer supported. Use `secret` instead.');
             secret = options.key;
         }
 
         // convert secret to buffer
         if (!Buffer.isBuffer(secret)) {
-            if (encoding === 'base32') {
-                secret = base32.decode(secret);
-            }
-            secret = new Buffer(secret, encoding);
+            secret = (encoding === 'base32') ? base32.decode(secret) : new Buffer(secret, encoding);
         }
 
         var secret_buffer_size;
@@ -73,13 +69,13 @@
         }
 
         // init hmac with the key
-        var hmac = crypto.createHmac(algorithm, secret);
+        var hmac = CryptoJS.algo.HMAC.create(CryptoJS.algo[algorithm.toUpperCase()], CryptoJS.enc.Hex.parse(secret.toString('hex')));
 
         // update hmac with the counter
-        hmac.update(buf);
+        hmac.update(CryptoJS.enc.Hex.parse(buf.toString('hex')));
 
         // return the digest
-        return hmac.digest();
+        return new Buffer(hmac.finalize().toString(CryptoJS.enc.Hex), 'hex');
     };
 
     /**
@@ -124,8 +120,8 @@
 
         // unpack digits
         // backward compatibility: `length` is also accepted here, but deprecated
-        var digits = (options.digits != null ? options.digits : options.length) || 6;
-        if (options.length != null) console.warn('Speakeasy - Deprecation Notice - Specifying token digits using `length` is no longer supported. Use `digits` instead.');
+        var digits = (options.digits !== null ? options.digits : options.length) || 6;
+        if (options.length !== null) console.warn('Speakeasy - Deprecation Notice - Specifying token digits using `length` is no longer supported. Use `digits` instead.');
 
         // digest the options
         var digest = options.digest || exports.digest(options);
@@ -150,119 +146,6 @@
     exports.counter = exports.hotp;
 
     /**
-     * Verify a counter-based one-time token against the secret and return the delta.
-     * By default, it verifies the token at the given counter value, with no leeway
-     * (no look-ahead or look-behind). A token validated at the current counter value
-     * will have a delta of 0.
-     *
-     * You can specify a window to add more leeway to the verification process.
-     * Setting the window param will check for the token at the given counter value
-     * as well as `window` tokens ahead (one-sided window). See param for more info.
-     *
-     * `verifyDelta()` will return the delta between the counter value of the token
-     * and the given counter value. For example, if given a counter 5 and a window
-     * 10, `verifyDelta()` will look at tokens from 5 to 15, inclusive. If it finds
-     * it at counter position 7, it will return `{ delta: 2 }`.
-     *
-     * @param {Object} options
-     * @param {String} options.secret Shared secret key
-     * @param {String} options.token Passcode to validate
-     * @param {Integer} options.counter Counter value. This should be stored by
-     *   the application and must be incremented for each request.
-     * @param {Integer} [options.digits=6] The number of digits for the one-time
-     *   passcode.
-     * @param {Integer} [options.window=0] The allowable margin for the counter.
-     *   The function will check "W" codes in the future against the provided
-     *   passcode, e.g. if W = 10, and C = 5, this function will check the
-     *   passcode against all One Time Passcodes between 5 and 15, inclusive.
-     * @param {String} [options.encoding="ascii"] Key encoding (ascii, hex,
-     *   base32, base64).
-     * @param {String} [options.algorithm="sha1"] Hash algorithm (sha1, sha256,
-     *   sha512).
-     * @return {Object} On success, returns an object with the counter
-     *   difference between the client and the server as the `delta` property (i.e.
-     *   `{ delta: 0 }`).
-     * @method hotp․verifyDelta
-     * @global
-     */
-
-    exports.hotp.verifyDelta = function hotpVerifyDelta(options) {
-        var i;
-
-        // shadow options
-        options = Object.create(options);
-
-        // verify secret and token exist
-        var secret = options.secret;
-        var token = options.token;
-        if (secret === null || typeof secret === 'undefined') throw new Error('Speakeasy - hotp.verifyDelta - Missing secret');
-        if (token === null || typeof token === 'undefined') throw new Error('Speakeasy - hotp.verifyDelta - Missing token');
-
-        // unpack options
-        var token = String(options.token);
-        var digits = parseInt(options.digits, 10) || 6;
-        var window = parseInt(options.window, 10) || 0;
-        var counter = parseInt(options.counter, 10) || 0;
-
-        // fail if token is not of correct length
-        if (token.length !== digits) {
-            return;
-        }
-
-        // parse token to integer
-        token = parseInt(token, 10);
-
-        // fail if token is NA
-        if (isNaN(token)) {
-            return;
-        }
-
-        // loop from C to C + W inclusive
-        for (i = counter; i <= counter + window; ++i) {
-            options.counter = i;
-            // domain-specific constant-time comparison for integer codes
-            if (parseInt(exports.hotp(options), 10) === token) {
-                // found a matching code, return delta
-                return {
-                    delta: i - counter
-                };
-            }
-        }
-
-        // no codes have matched
-    };
-
-    /**
-     * Verify a counter-based one-time token against the secret and return true if
-     * it verifies. Helper function for `hotp.verifyDelta()`` that returns a boolean
-     * instead of an object. For more on how to use a window with this, see
-     * {@link hotp.verifyDelta}.
-     *
-     * @param {Object} options
-     * @param {String} options.secret Shared secret key
-     * @param {String} options.token Passcode to validate
-     * @param {Integer} options.counter Counter value. This should be stored by
-     *   the application and must be incremented for each request.
-     * @param {Integer} [options.digits=6] The number of digits for the one-time
-     *   passcode.
-     * @param {Integer} [options.window=0] The allowable margin for the counter.
-     *   The function will check "W" codes in the future against the provided
-     *   passcode, e.g. if W = 10, and C = 5, this function will check the
-     *   passcode against all One Time Passcodes between 5 and 15, inclusive.
-     * @param {String} [options.encoding="ascii"] Key encoding (ascii, hex,
-     *   base32, base64).
-     * @param {String} [options.algorithm="sha1"] Hash algorithm (sha1, sha256,
-     *   sha512).
-     * @return {Boolean} Returns true if the token matches within the given
-     *   window, false otherwise.
-     * @method hotp․verify
-     * @global
-     */
-    exports.hotp.verify = function hotpVerify(options) {
-        return exports.hotp.verifyDelta(options) != null;
-    };
-
-    /**
      * Calculate counter value based on given options. A counter value converts a
      * TOTP time into a counter value by finding the number of time steps that have
      * passed since the epoch to the current time.
@@ -282,11 +165,11 @@
 
     exports._counter = function _counter(options) {
         var step = options.step || 30;
-        var time = options.time != null ? (options.time * 1000) : Date.now();
+        var time = options.time !== null ? (options.time * 1000) : Date.now();
 
         // also accepts 'initial_time', but deprecated
-        var epoch = (options.epoch != null ? (options.epoch * 1000) : (options.initial_time * 1000)) || 0;
-        if (options.initial_time != null) console.warn('Speakeasy - Deprecation Notice - Specifying the epoch using `initial_time` is no longer supported. Use `epoch` instead.');
+        var epoch = (options.epoch !== null ? (options.epoch * 1000) : (options.initial_time * 1000)) || 0;
+        if (options.initial_time !== null) console.warn('Speakeasy - Deprecation Notice - Specifying the epoch using `initial_time` is no longer supported. Use `epoch` instead.');
 
         return Math.floor((time - epoch) / step / 1000);
     };
@@ -340,7 +223,7 @@
         }
 
         // calculate default counter value
-        if (options.counter == null) options.counter = exports._counter(options);
+        if (options.counter === null) options.counter = exports._counter(options);
 
         // pass to hotp
         return this.hotp(options);

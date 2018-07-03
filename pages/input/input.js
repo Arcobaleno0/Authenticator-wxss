@@ -58,17 +58,18 @@ Page({
             this.setData(MakeData('tokenerror', true));
             return false;
         }
-        var obj = {
-            "secret": data.token.replace('\s', ''),
-            "issuer": '',
-            "algorithm": "SHA1",
-            "digits": "6",
-            "period": "30",
-            "encoding": "base32",
-            "type": ((data.type >> 0) === 0) ? "totp" : 'hotp',
-            "label": data.username
-        };
-        Config.update(obj);
+        Config.insert({
+            secret: data.token.replace('\s', ''),
+            counter: ((data.type >> 0) === 0) ? null : 0,
+            encoding: "base32",
+            algorithm: "SHA1",
+            issuer: data.username,
+            digits: 6,
+            epoch: 0,
+            step: 30,
+            type: ((data.type >> 0) === 0) ? "totp" : 'hotp',
+            label: '',
+        });
         wx.navigateBack();
     }
 });
