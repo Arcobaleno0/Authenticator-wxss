@@ -102,9 +102,21 @@
             </view>
         </view>
         <view class="div backdrop" catchtap="ErrorTap" hidden="{{ ErrorModal }}"></view>
-        <view class="div footer_panel mdl-js-snackbar mdl-snackbar {{Panel?'mdl-snackbar--active':''}}">
-            <view class="div mdl-snackbar__text">test</view>
+        <!-- +操作面板 -->
+        <view class="div footer_panel mdl-js-snackbar mdl-snackbar {{!Panel?'mdl-snackbar--active':''}}" catchtouchmove="catchtouchmove">
+            <view class="ul demo-list-icon mdl-list">
+                <view class="li mdl-list__item" catchtap="openScan">
+                    <view class="span mdl-list__item-primary-content">
+                        <view class="i material-icons mdl-list__item-icon">photo_camera</view> 扫描二维码
+                    </view>
+                </view>
+                <view class="li mdl-list__item" catchtap="gotoInput">
+                    <view class="span mdl-list__item-primary-content">
+                        <view class="i material-icons mdl-list__item-icon">keyboard</view> 输入提供的密钥
+                    </view>
+                </view>
+            </view>
         </view>
-        <view class="div backdrop" catchtap="PanelTap" hidden="{{ !Panel }}" catchtouchmove="catchtouchmove"></view>
+        <view class="div backdrop" catchtap="PanelTap" hidden="{{ Panel }}" catchtouchmove="catchtouchmove"></view>
     </view>
 </view>

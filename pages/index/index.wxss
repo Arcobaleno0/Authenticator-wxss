@@ -82,10 +82,14 @@
   bottom: 1em;
   z-index: 2;
 }
-.footer_panel+.backdrop{
-    background: rgba(0,0,0,0.5);
-    position: fixed;
-  top: 0; right: 0; bottom: 0; left: 0;
+
+.footer_panel+.backdrop {
+  background: rgba(0,0,0,0.5);
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
   z-index: 3;
 }
 
@@ -126,7 +130,7 @@
 }
 
 .delete_dialog_title .warning {
-  padding-right:5px;
+  padding-right: 5px;
   font-size: 32px;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
@@ -152,4 +156,11 @@
   color: #000000;
   padding-top: 5px;
   font-size: 16px;
+}
+
+.footer_panel.mdl-snackbar {
+  background-color:#ffffff;
+  min-height:initial;
+  max-height:initial;
+  display: block;
 }

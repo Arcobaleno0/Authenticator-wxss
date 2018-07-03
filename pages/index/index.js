@@ -13,7 +13,7 @@ Page({
         DeleteModal: true,
         ErrorModal: true,
         RenameModal: true,
-        Panel: false,
+        Panel: true,
         deleteinfo: '',
         deleteid: null,
         rename: '',
@@ -48,44 +48,36 @@ Page({
     },
     showWidget: function() {
         return this.setData({
+            Panel: false,
+        });
+    },
+    openScan: function() {
+        this.setData({
             Panel: true,
         });
-        wx.showActionSheet({
-            itemList: ['扫描二维码', '输入提供的密钥', '设置面板'],
+        // 允许从相机和相册扫码
+        wx.scanCode({
             success: (res) => {
-                if (!res.cancel) {
-                    switch (res.tapIndex) {
-                        case 0:
-                            // 允许从相机和相册扫码
-                            wx.scanCode({
-                                success: (res) => {
-                                    var d = TOOL.parseURL(res.result);
-                                    if (d === false) {
-                                        return this.setData({
-                                            ErrorModal: false,
-                                        });
-                                    }
-                                    Config.update(d);
-                                    this.setData({
-                                        DATA: TOOL.parse_code(Config.get())
-                                    });
-                                    this.showCode(true);
-                                }
-                            });
-                            break;
-                        case 1:
-                            wx.navigateTo({
-                                url: '/pages/input/input',
-                            });
-                            break;
-                        case 2:
-                            wx.navigateTo({
-                                url: '/pages/setting/setting',
-                            });
-                            break;
-                    }
+                var d = TOOL.parseURL(res.result);
+                if (d === false) {
+                    return this.setData({
+                        ErrorModal: false,
+                    });
                 }
+                Config.update(d);
+                this.setData({
+                    DATA: TOOL.parse_code(Config.get())
+                });
+                this.showCode(true);
             }
+        });
+    },
+    gotoInput: function() {
+        this.setData({
+            Panel: true,
+        });
+        wx.navigateTo({
+            url: '/pages/input/input',
         });
     },
     Longpress: function(event) {
@@ -131,6 +123,11 @@ Page({
     ErrorTap: function() {
         this.setData({
             ErrorModal: true
+        });
+    },
+    PanelTap: function() {
+        this.setData({
+            Panel: true
         });
     },
     modalre: function() {
