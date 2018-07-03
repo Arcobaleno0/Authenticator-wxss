@@ -14,11 +14,16 @@
             </view>
             <input type="text" name="type" value="{{index}}" class="hide" />
             <view class="div mdl-card__supporting-text am-fc">
-                <picker class="span am-fl" bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
-                    <view class="span picker">
-                        {{array[index]}} ▾
+                <!-- <picker class="span am-fl" bindchange="bindPickerChange" value="{{index}}" range="{{array}}"> -->
+                <view class="div am-fl mdl-list__item more_type">
+                    <view class="span mdl-list__item-primary-content">
+                        <text>{{array[index]}}　</text>
                     </view>
-                </picker>
+                    <view class="span mdl-list__item-secondary-action" href="#">
+                        <view class="i material-icons">expand_more</view>
+                    </view>
+                </view>
+                <!-- </picker> -->
                 <view class="span am-fr">
                     <button formType="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">　添加　</button>
                 </view>

@@ -3227,7 +3227,6 @@
     -ms-flex-align: center;
     align-items: center;
     color: #000;
-    display: block;
     display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
@@ -3252,7 +3251,6 @@
     -ms-flex-item-align: end;
     align-self: flex-end;
     color: inherit;
-    display: block;
     display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;

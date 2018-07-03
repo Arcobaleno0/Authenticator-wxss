@@ -2,7 +2,6 @@
     "pages": [
         "pages/index/index",
         "pages/input/input",
-        "pages/update/update",
         "pages/setting/setting"
     ],
     "window": {
