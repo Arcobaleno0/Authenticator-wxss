@@ -33,7 +33,7 @@
             <view class="h6 class mdl-dialog__title">重命名</view>
             <view class="div class mdl-dialog__content">
                 <view class="div class mdl-textfield mdl-js-textfield is-focused is-dirty">
-                    <input class="class mdl-textfield__input" type="text" name="username" id="issue" value="{{ rename }}" data-id="{{ reid }}" catchinput="userNameInput" />
+                    <input class="class mdl-textfield__input" type="text" name="username" id="issue" value="{{ rename }}" data-id="{{ reid }}" bindinput="userNameInput" />
                     <label class="class mdl-textfield__label" for="issue"></label>
                 </view>
             </view>

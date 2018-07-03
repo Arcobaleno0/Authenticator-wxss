@@ -63,12 +63,12 @@ Page({
             counter: ((data.type >> 0) === 0) ? null : 0,
             encoding: "base32",
             algorithm: "SHA1",
-            issuer: data.username,
+            issuer: '',
             digits: 6,
             epoch: 0,
             step: 30,
             type: ((data.type >> 0) === 0) ? "totp" : 'hotp',
-            label: '',
+            label: data.username,
         });
         wx.navigateBack();
     }

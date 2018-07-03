@@ -34,7 +34,7 @@
         }
         s.type = r.hostname.toLowerCase();
         s.counter = ((s.type == 'totp') ? null : 0);
-        return s.issuer = decodeURIComponent(t[0]), s.label = decodeURIComponent(t.length > 1 ? t[1] : ""), s;
+        return s.label = decodeURIComponent(t[0]), s.issuer = decodeURIComponent(t.length > 1 ? t[1] : ""), s;
     };
     exports.parse_code = function(e) {
         var data = [];

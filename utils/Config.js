@@ -14,12 +14,12 @@ var Config = {
                     encoding: old_data[i].encoding,
                     algorithm: old_data[i].algorithm,
                     counter: null,
-                    issuer: old_data[i].issuer,
+                    issuer: (old_data[i].label.length > 0 ? (old_data[i].issuer.length > 0 ? old_data[i].issuer : '') : ''),
                     type: old_data[i].type,
                     digits: old_data[i].digits,
                     epoch: 0,
                     step: old_data[i].period,
-                    label: old_data[i].label,
+                    label: (old_data[i].label.length > 0 ? old_data[i].label : old_data[i].issuer),
                 };
             }
             wx.setStorageSync('TOKENS', json);
