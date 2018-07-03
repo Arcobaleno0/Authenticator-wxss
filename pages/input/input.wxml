@@ -1,33 +1,40 @@
-<view class="body">
-    <view class="div">
-        <form bindsubmit="formSubmit">
-            <view class="div mdl-card__supporting-text">
-                <view class="div mdl-textfield mdl-js-textfield mdl-textfield--floating-label is-upgraded {{usernamefocus ? 'is-focused' : ''}} {{usernameinput ? 'is-dirty' : ''}}">
-                    <input class="mdl-textfield__input" bindfocus="Inputfocus" bindblur="Inputblur" bindinput="Inputinput" type="text" name="username" id="username" value="" />
-                    <label class="mdl-textfield__label" for="username">输入账户名称</label>
-                </view>
-                <view class="div mdl-textfield mdl-js-textfield mdl-textfield--floating-label is-upgraded {{tokenfocus ? 'is-focused' : ''}} {{tokeninput ? 'is-dirty' : ''}} {{tokenerror ? 'is-invalid' : ''}}">
-                    <input class="mdl-textfield__input" bindfocus="Inputfocus" bindblur="Inputblur" bindinput="Inputinput" type="text" name="token" id="token" value="" />
-                    <label class="mdl-textfield__label" for="token">输入你的密钥</label>
-                    <view class="span mdl-textfield__error">{{ errorMsg }}</view>
-                </view>
-            </view>
-            <input type="text" name="type" value="{{index}}" class="hide" />
-            <view class="div mdl-card__supporting-text am-fc">
-                <!-- <picker class="span am-fl" bindchange="bindPickerChange" value="{{index}}" range="{{array}}"> -->
-                <view class="div am-fl mdl-list__item more_type">
-                    <view class="span mdl-list__item-primary-content">
-                        <text>{{array[index]}}　</text>
+<view class="html">
+    <view class="body">
+        <view class="div">
+            <form bindsubmit="formSubmit">
+                <view class="div mdl-card__supporting-text">
+                    <view class="div mdl-textfield mdl-js-textfield mdl-textfield--floating-label is-upgraded {{usernamefocus ? 'is-focused' : ''}} {{usernameinput ? 'is-dirty' : ''}}">
+                        <input class="mdl-textfield__input" bindfocus="Inputfocus" bindblur="Inputblur" bindinput="Inputinput" type="text" name="username" id="username" value="" />
+                        <label class="mdl-textfield__label" for="username">输入账户名称</label>
                     </view>
-                    <view class="span mdl-list__item-secondary-action" href="#">
-                        <view class="i material-icons">expand_more</view>
+                    <view class="div mdl-textfield mdl-js-textfield mdl-textfield--floating-label is-upgraded {{tokenfocus ? 'is-focused' : ''}} {{tokeninput ? 'is-dirty' : ''}} {{tokenerror ? 'is-invalid' : ''}}">
+                        <input class="mdl-textfield__input" bindfocus="Inputfocus" bindblur="Inputblur" bindinput="Inputinput" type="text" name="token" id="token" value="" />
+                        <label class="mdl-textfield__label" for="token">输入你的密钥</label>
+                        <view class="span mdl-textfield__error">{{ errorMsg }}</view>
                     </view>
                 </view>
-                <!-- </picker> -->
-                <view class="span am-fr">
-                    <button formType="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">　添加　</button>
+                <input type="text" name="type" value="{{index}}" class="hide" />
+                <view class="div foot_bar mdl-card__supporting-text am-fc">
+                    <view class="div am-fl mdl-list__item more_type">
+                        <view class="span mdl-list__item-primary-content">
+                            <text>{{array[index]}}　</text>
+                        </view>
+                        <view class="span mdl-list__item-secondary-action" href="#">
+                            <view class="i material-icons">expand_more</view>
+                        </view>
+                    </view>
+                    <view class="div mdl-menu__container is-upgraded is-visible">
+                        <view class="div mdl-menu__outline mdl-menu--bottom-left"></view>
+                        <view class="ul mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect mdl-js-ripple-effect--ignore-events" for="demo-menu-lower-left">
+                            <view class="li mdl-menu__item mdl-js-ripple-effect">Some Action</view>
+                            <view class="li mdl-menu__item mdl-menu__item--full-bleed-divider mdl-js-ripple-effect">Another Action</view>
+                        </view>
+                    </view>
+                    <view class="span am-fr">
+                        <button formType="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">　添加　</button>
+                    </view>
                 </view>
-            </view>
-        </form>
+            </form>
+        </view>
     </view>
 </view>

@@ -34,6 +34,9 @@
 .mdl-textfield__input{
     color:#000000;
 }
+.foot_bar{
+    position:relative;
+}
 .more_type{
     padding:0;
     min-height:inherit;
