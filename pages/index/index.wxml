@@ -3,7 +3,7 @@
         <view class="div auth">
             <view class="ul">
                 <block wx:for="{{ DATA }}" wx:key="k">
-                    <view class="li list" data="k" catchlongpress="Longpress" data-id="{{ item.id }}" data-access="{{ item.access1 }}" data-issuer="{{ item.issuer }}" data-label="{{ item.label }}" data-token="{{ item.token }}">
+                    <view class="li list" data="k" bindlongpress="Longpress" data-id="{{ item.id }}" data-access="{{ item.access1 }}" data-issuer="{{ item.issuer }}" data-label="{{ item.label }}" data-token="{{ item.token }}">
                         <view class="h3 token">
                             <text class="strong">{{ item.token }}</text>
                         </view>
@@ -13,7 +13,7 @@
                             </view>
                             <view class="span time am-fr">
                                 <block wx:if="{{ item.type == 'hotp' }}">
-                                    <view catchtap='getHotp' data-id="{{ item.id }}">⊙</view>
+                                    <view bindtap='getHotp' data-id="{{ item.id }}">⊙</view>
                                 </block>
                                 <block wx:else>
                                     <text>{{ timeOut }}s</text>
