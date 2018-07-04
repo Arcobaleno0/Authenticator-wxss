@@ -16,7 +16,7 @@
                                     <view bindtap='getHotp' data-id="{{ item.id }}">⊙</view>
                                 </block>
                                 <block wx:else>
-                                    <text>{{ timeOut }}s</text>
+                                    <text>{{ item.timer }}s</text>
                                 </block>
                             </view>
                         </view>

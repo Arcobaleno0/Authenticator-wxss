@@ -117,13 +117,10 @@
         var digest = options.digest || exports.digest(options);
 
         // compute HOTP offset
-        var offset = digest[digest.length - 1] & 0xf;
+        var offset = (digest[digest.length - 1] & 0xf);
 
         // calculate binary code (RFC4226 5.4)
-        var code = (digest[offset] & 0x7f) << 24 |
-            (digest[offset + 1] & 0xff) << 16 |
-            (digest[offset + 2] & 0xff) << 8 |
-            (digest[offset + 3] & 0xff);
+        var code = ((digest[offset] & 0x7f) << 24) | ((digest[offset + 1] & 0xff) << 16) | ((digest[offset + 2] & 0xff) << 8) | (digest[offset + 3] & 0xff);
 
         // left-pad code
         code = new Array(digits + 1).join('0') + code.toString(10);
