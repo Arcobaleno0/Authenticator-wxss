@@ -1,8 +1,8 @@
 /*jshint esversion: 6 */
 //获取应用实例
-var TOOL = require('../../utils/index.js');
-var Config = require('../../utils/Config.js').config;
-var Interval = null;
+var TOOL = require('../../utils/index.js'),
+    Config = require('../../utils/Config.js').config,
+    Interval;
 Page({
     /**
      * 页面的初始数据
@@ -34,17 +34,23 @@ Page({
             });
         }
     },
+    runCron: function() {
+        return Interval || (Interval = setInterval(() => {
+            this.showCode();
+        }, 500));
+    },
+    stopCron: function() {
+        return Interval && clearInterval(Interval), (Interval = undefined);
+    },
     onShow: function() {
         this.showCode(true);
-        this.onReady();
+        this.runCron();
     },
     onHide: function() {
-        return Interval && clearInterval(Interval);
+        this.stopCron();
     },
-    onReady: function(e) {
-        Interval = setInterval(() => {
-            this.showCode();
-        }, 500);
+    onUnload: function() {
+        this.stopCron();
     },
     showWidget: function() {
         return this.setData({
