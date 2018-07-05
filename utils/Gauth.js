@@ -20,8 +20,8 @@
      * @return {Buffer} The one-time passcode as a buffer.
      */
 
-    function empty(v) {
-        return (v === undefined) || (v === null);
+    function isset(v) {
+        return (v !== undefined) && (v !== null);
     }
 
     exports.digest = function digest(options) {
@@ -102,16 +102,16 @@
         var secret = options.secret;
         var counter = options.counter;
 
-        if (empty(secret)) {
+        if (!isset(secret)) {
             throw new Error('Speakeasy - hotp - Missing secret');
         }
-        if (empty(counter)) {
+        if (!isset(counter)) {
             throw new Error('Speakeasy - hotp - Missing counter');
         }
 
         // unpack digits
         // backward compatibility: `length` is also accepted here, but deprecated
-        var digits = (!empty(options.digits) ? options.digits : 6);
+        var digits = (isset(options.digits) ? options.digits : 6);
 
         // digest the options
         var digest = options.digest || exports.digest(options);
@@ -152,10 +152,10 @@
 
     exports._counter = function _counter(options) {
         var step = options.step || 30;
-        var time = !empty(options.time) ? (options.time * 1000) : Date.now();
+        var time = isset(options.time) ? (options.time * 1000) : Date.now();
 
         // also accepts 'initial_time', but deprecated
-        var epoch = (!empty(options.epoch) ? (options.epoch * 1000) : 0);
+        var epoch = (isset(options.epoch) ? (options.epoch * 1000) : 0);
         return Math.floor((time - epoch) / step / 1000);
     };
 
@@ -200,11 +200,13 @@
 
         // verify secret exists if key is not specified
         var secret = options.secret;
-        if (empty(secret)) {
+        if (!isset(secret)) {
             throw new Error('Speakeasy - totp - Missing secret');
         }
         // calculate default counter value
-        if (empty(options.counter)) options.counter = exports._counter(options);
+        if (!isset(options.counter)) {
+            options.counter = exports._counter(options);
+        }
         // pass to hotp
         return this.hotp(options);
     };

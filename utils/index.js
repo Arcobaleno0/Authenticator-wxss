@@ -9,7 +9,7 @@
                 secret: '',
                 encoding: "base32",
                 algorithm: "SHA1",
-                counter: null,
+                counter: undefined,
                 issuer: '',
                 type: "totp",
                 digits: 6,
@@ -32,7 +32,7 @@
             return !1;
         }
         s.type = r.hostname.toLowerCase();
-        s.counter = ((s.type == 'totp') ? null : 0);
+        s.counter = ((s.type == 'totp') ? undefined : 0);
         if (s.label.length === 0) {
             s.label = decodeURIComponent(((t.length == 1) ? t[0] : t[1]));
         }

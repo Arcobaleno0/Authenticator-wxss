@@ -60,7 +60,7 @@ Page({
         }
         Config.insert({
             secret: data.token.replace('\s', ''),
-            counter: ((data.type >> 0) === 0) ? null : 0,
+            counter: ((data.type >> 0) === 0) ? undefined : 0,
             encoding: "base32",
             algorithm: "SHA1",
             issuer: '',

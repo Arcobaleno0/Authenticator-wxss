@@ -13,12 +13,12 @@ var Config = {
                     secret: old_data[i].secret,
                     encoding: old_data[i].encoding,
                     algorithm: old_data[i].algorithm,
-                    counter: null,
+                    counter: undefined,
                     issuer: (old_data[i].label.length > 0 ? (old_data[i].issuer.length > 0 ? old_data[i].issuer : '') : ''),
                     type: old_data[i].type,
                     digits: parseInt(old_data[i].digits, 10),
                     epoch: 0,
-                    step: old_data[i].period || 30,
+                    step: parseInt(old_data[i].period, 10) || 30,
                     label: (old_data[i].label.length > 0 ? old_data[i].label : old_data[i].issuer),
                 };
             }
