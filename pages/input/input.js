@@ -50,7 +50,7 @@ Page({
         if (this.data.tokenerror) {
             return false;
         }
-        if (data.token.length < 16 || data.token.replace('\s', '').length < 16) {
+        if (data.token.length < 16 || data.token.replace(/\s/, '').length < 16) {
             this.setData({
                 tokeninput: true,
                 errorMsg: '密钥值太短'
@@ -59,7 +59,7 @@ Page({
             return false;
         }
         Config.insert({
-            secret: data.token.replace('\s', ''),
+            secret: data.token.replace(/\s/, ''),
             counter: ((data.type >> 0) === 0) ? undefined : 0,
             encoding: "base32",
             algorithm: "SHA1",
