@@ -98,7 +98,7 @@ Page({
     },
     Longpress: function(event) {
         wx.setClipboardData({
-            data: event.currentTarget.dataset.token.replace(/\s/, ''),
+            data: event.currentTarget.dataset.token.replace(/\s/ig, ''),
             success: (res) => {
                 wx.showToast({
                     title: '验证码已复制',
