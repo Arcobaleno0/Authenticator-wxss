@@ -16,9 +16,9 @@ var Config = {
                     counter: null,
                     issuer: (old_data[i].label.length > 0 ? (old_data[i].issuer.length > 0 ? old_data[i].issuer : '') : ''),
                     type: old_data[i].type,
-                    digits: old_data[i].digits,
+                    digits: parseInt(old_data[i].digits, 10),
                     epoch: 0,
-                    step: old_data[i].period,
+                    step: old_data[i].period || 30,
                     label: (old_data[i].label.length > 0 ? old_data[i].label : old_data[i].issuer),
                 };
             }

@@ -37,21 +37,21 @@
         if (!Buffer.isBuffer(secret)) {
             secret = (encoding === 'base32') ? base32.decode(secret) : new Buffer(secret, encoding);
         }
-        var secret_buffer_size;
-        if (algorithm === 'sha1') {
-            secret_buffer_size = 20; // 20 bytes
-        } else if (algorithm === 'sha256') {
-            secret_buffer_size = 32; // 32 bytes
-        } else if (algorithm === 'sha512') {
-            secret_buffer_size = 64; // 64 bytes
-        } else {
-            console.warn('Speakeasy - The algorithm provided (`' + algorithm + '`) is not officially supported, results may be different than expected.');
-        }
+        // var secret_buffer_size;
+        // if (algorithm === 'sha1') {
+        //     secret_buffer_size = 20; // 20 bytes
+        // } else if (algorithm === 'sha256') {
+        //     secret_buffer_size = 32; // 32 bytes
+        // } else if (algorithm === 'sha512') {
+        //     secret_buffer_size = 64; // 64 bytes
+        // } else {
+        //     console.warn('Speakeasy - The algorithm provided (`' + algorithm + '`) is not officially supported, results may be different than expected.');
+        // }
         // The secret for sha1, sha256 and sha512 needs to be a fixed number of bytes for the one-time-password to be calculated correctly
         // Pad the buffer to the correct size be repeating the secret to the desired length
-        if (secret_buffer_size && secret.length !== secret_buffer_size) {
-            secret = new Buffer(Array(Math.ceil(secret_buffer_size / secret.length) + 1).join(secret.toString('hex')), 'hex').slice(0, secret_buffer_size);
-        }
+        // if (secret_buffer_size && secret.length !== secret_buffer_size) {
+        //     secret = new Buffer(Array(Math.ceil(secret_buffer_size / secret.length) + 1).join(secret.toString('hex')), 'hex').slice(0, secret_buffer_size);
+        // }
 
         // create an buffer from the counter
         var buf = new Buffer(8);
@@ -156,7 +156,6 @@
 
         // also accepts 'initial_time', but deprecated
         var epoch = (!empty(options.epoch) ? (options.epoch * 1000) : 0);
-
         return Math.floor((time - epoch) / step / 1000);
     };
 
@@ -197,7 +196,7 @@
 
     exports.totp = function totpGenerate(options) {
         // shadow options
-        // options = Object.create(options);
+        options = Object.create(options);
 
         // verify secret exists if key is not specified
         var secret = options.secret;
@@ -206,7 +205,6 @@
         }
         // calculate default counter value
         if (empty(options.counter)) options.counter = exports._counter(options);
-
         // pass to hotp
         return this.hotp(options);
     };

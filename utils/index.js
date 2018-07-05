@@ -28,11 +28,23 @@
                 return !1;
                 // break;
         }
-        if ((!('secret' in s)) || (s.secret.length === 0)) {
+        if (s.secret.length === 0) {
             return !1;
         }
         s.type = r.hostname.toLowerCase();
         s.counter = ((s.type == 'totp') ? null : 0);
-        return s.label = decodeURIComponent(t[0]), s.issuer = decodeURIComponent(t.length > 1 ? t[1] : ""), s;
+        if (s.label.length === 0) {
+            s.label = decodeURIComponent(((t.length == 1) ? t[0] : t[1]));
+        }
+        if (s.issuer.length === 0 && t.length > 1) {
+            s.issuer = decodeURIComponent(t[0]);
+        }
+        if ('period' in s) {
+            s.step = parseInt(s.period, 10);
+            delete s.period;
+        }
+        s.digits = parseInt(s.digits, 10);
+        s.epoch = parseInt(s.epoch, 10);
+        return s;
     };
 })();

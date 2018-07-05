@@ -10,8 +10,7 @@ Page({
      * 页面的初始数据
      */
     data: {
-        DATA: [],
-        timeOut: 30,
+        DATA: {},
         DeleteModal: true,
         ErrorModal: true,
         RenameModal: true,
@@ -25,24 +24,27 @@ Page({
         reload = reload || false;
         if (reload) {
             TEMP_TOKENS = Config.get();
-        } else {
-            var data = [];
-            for (let id in TEMP_TOKENS) {
-                data.push({
-                    id: id,
-                    issuer: TEMP_TOKENS[id].issuer,
-                    access: (TEMP_TOKENS[id].label.length > 0 && TEMP_TOKENS[id].issuer.length > 0) ? TEMP_TOKENS[id].issuer + " (" + TEMP_TOKENS[id].label + ")" : (TEMP_TOKENS[id].issuer.length > 0 ? TEMP_TOKENS[id].issuer : (TEMP_TOKENS[id].label.length > 0 ? TEMP_TOKENS[id].label : '')),
-                    access1: (TEMP_TOKENS[id].label.length > 0 && TEMP_TOKENS[id].issuer.length > 0) ? TEMP_TOKENS[id].issuer + ":" + TEMP_TOKENS[id].label : (TEMP_TOKENS[id].issuer.length > 0 ? TEMP_TOKENS[id].issuer : (TEMP_TOKENS[id].label.length > 0 ? TEMP_TOKENS[id].label : '')),
-                    label: TEMP_TOKENS[id].label,
-                    token: String("totp" == TEMP_TOKENS[id].type ? Ga.totp(TEMP_TOKENS[id]) : '------').replace(/^([\w\-]{3})/, '$1 '),
-                    type: TEMP_TOKENS[id].type,
-                    timer: ("totp" == TEMP_TOKENS[id].type) ? TEMP_TOKENS[id].step - ((Date.now() / 1000 >> 0) % TEMP_TOKENS[id].step) : 0
-                });
-            }
-            this.setData({
-                DATA: data
-            });
         }
+        if (TEMP_TOKENS.length === 0) {
+            return false;
+        }
+        let data = {};
+        for (let id in TEMP_TOKENS) {
+            let over = (TEMP_TOKENS[id].step - ((Date.now() / 1000 >> 0) % TEMP_TOKENS[id].step));
+            data[id] = {
+                id: id,
+                issuer: TEMP_TOKENS[id].issuer,
+                access: (TEMP_TOKENS[id].label.length > 0 && TEMP_TOKENS[id].issuer.length > 0) ? (TEMP_TOKENS[id].issuer + " (" + TEMP_TOKENS[id].label + ")") : TEMP_TOKENS[id].label,
+                access1: (TEMP_TOKENS[id].label.length > 0 && TEMP_TOKENS[id].issuer.length > 0) ? (TEMP_TOKENS[id].issuer + ":" + TEMP_TOKENS[id].label) : TEMP_TOKENS[id].label,
+                label: TEMP_TOKENS[id].label,
+                token: ((over === TEMP_TOKENS[id].step) || (!(id in this.data.DATA))) ? String((("totp" == TEMP_TOKENS[id].type) ? Ga.totp(TEMP_TOKENS[id]) : '------')).replace(/^([\w\-]{3})/, '$1 ') : this.data.DATA[id].token,
+                type: TEMP_TOKENS[id].type,
+                timer: ("totp" == TEMP_TOKENS[id].type) ? over : 0
+            };
+        }
+        this.setData({
+            DATA: data
+        });
     },
     runCron: function() {
         return Interval || (Interval = setInterval(() => {
