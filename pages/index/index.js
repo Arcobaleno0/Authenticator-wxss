@@ -37,7 +37,7 @@ Page({
                 access: (TEMP_TOKENS[id].label.length > 0 && TEMP_TOKENS[id].issuer.length > 0) ? (TEMP_TOKENS[id].issuer + " (" + TEMP_TOKENS[id].label + ")") : TEMP_TOKENS[id].label,
                 access1: (TEMP_TOKENS[id].label.length > 0 && TEMP_TOKENS[id].issuer.length > 0) ? (TEMP_TOKENS[id].issuer + ":" + TEMP_TOKENS[id].label) : TEMP_TOKENS[id].label,
                 label: TEMP_TOKENS[id].label,
-                token: ((over === TEMP_TOKENS[id].step) || (!(id in this.data.DATA))) ? String((("totp" == TEMP_TOKENS[id].type) ? Ga.totp(TEMP_TOKENS[id]) : '------')).replace(/^([\w\-]{3})/, '$1 ') : this.data.DATA[id].token,
+                token: ((over === TEMP_TOKENS[id].step) || (!(id in this.data.DATA)) || reload) ? String((("totp" == TEMP_TOKENS[id].type) ? Ga.totp(TEMP_TOKENS[id]) : '------')).replace(/^([\w\-]{3})/, '$1 ') : this.data.DATA[id].token,
                 type: TEMP_TOKENS[id].type,
                 timer: ("totp" == TEMP_TOKENS[id].type) ? over : 0
             };

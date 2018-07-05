@@ -44,6 +44,7 @@
             delete s.period;
         }
         s.digits = parseInt(s.digits, 10);
+        s.step = parseInt(s.step, 10);
         s.epoch = parseInt(s.epoch, 10);
         return s;
     };
